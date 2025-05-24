@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>美食推荐 - 汉中旅游网</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#165DFF',
+            secondary: '#4CAF50',
+            accent: '#FF7043',
+            neutral: {
+              100: '#F5F7FA',
+              200: '#E4E7ED',
+              300: '#C0C6CF',
+              400: '#909399',
+              500: '#606266',
+              600: '#303133',
+              700: '#1E1E1E',
+            }
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .text-shadow-lg {
+        text-shadow: 0 4px 8px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+      }
+      .transition-custom {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .hover-scale {
+        transition: transform 0.3s ease;
+      }
+      .hover-scale:hover {
+        transform: scale(1.03);
+      }
+    }
+  </style>
+</head>
+<body class="font-inter bg-neutral-100 text-neutral-600">
+  <!-- 导航栏 -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center space-x-2">
+          <i class="fa fa-map-marker text-primary text-2xl"></i>
+          <span class="text-xl font-bold text-primary">汉中旅游网</span>
+        </a>
+        
+        <!-- 桌面导航 -->
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="text-neutral-600 hover:text-primary font-medium">首页</a>
+          <a href="scenic_spots.html" class="text-neutral-600 hover:text-primary font-medium">景点介绍</a>
+          <a href="travel_routes.html" class="text-neutral-600 hover:text-primary font-medium">旅游线路</a>
+          <a href="travel_tips.html" class="text-neutral-600 hover:text-primary font-medium">旅游攻略</a>
+          <a href="food_recommendation.html" class="text-primary font-medium">美食推荐</a>
+          <a href="han_culture.html" class="text-neutral-600 hover:text-primary font-medium">汉文化活动</a>
+          <a href="contact_us.html" class="text-neutral-600 hover:text-primary font-medium">联系我们</a>
+        </nav>
+        
+        <!-- 用户操作区 -->
+        <div class="flex items-center space-x-4">
+          <a href="login.html" class="hidden sm:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90 transition-colors">
+            <i class="fa fa-user-circle mr-2"></i>登录/注册
+          </a>
+          
+          <!-- 移动端菜单按钮 -->
+          <button id="mobile-menu-button" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-neutral-600 hover:text-primary hover:bg-neutral-100 focus:outline-none">
+            <i class="fa fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 移动端导航菜单 -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">首页</a>
+        <a href="scenic_spots.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">景点介绍</a>
+        <a href="travel_routes.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">旅游线路</a>
+        <a href="travel_tips.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">旅游攻略</a>
+        <a href="food_recommendation.html" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-primary">美食推荐</a>
+        <a href="han_culture.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">汉文化活动</a>
+        <a href="contact_us.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">联系我们</a>
+        <a href="login.html" class="block px-3 py-2 mt-4 rounded-md text-base font-medium text-white bg-primary hover:bg-primary/90 text-center">
+          <i class="fa fa-user-circle mr-2"></i>登录/注册
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 页面标题区域 -->
+  <section class="pt-16 sm:pt-20 pb-8 bg-primary/5">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-neutral-700 mb-2">美食推荐</h1>
+        <div class="flex items-center justify-center text-neutral-500 mb-4">
+          <a href="index.html" class="hover:text-primary transition-colors">首页</a>
+          <i class="fa fa-chevron-right mx-2 text-xs"></i>
+          <span class="text-primary">美食推荐</span>
+        </div>
+        <p class="text-neutral-600 max-w-2xl mx-auto">品味汉中独特风味，开启舌尖上的旅程</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 美食分类导航 -->
+  <section class="py-8 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#local-specialties" class="px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors">特色小吃</a>
+        <a href="#traditional-dishes" class="px-6 py-3 bg-neutral-200 text-neutral-700 font-medium rounded-lg hover:bg-neutral-300 transition-colors">传统名菜</a>
+        <a href="#local-cuisine" class="px-6 py-3 bg-neutral-200 text-neutral-700 font-medium rounded-lg hover:bg-neutral-300 transition-colors">地方菜系</a>
+        <a href="#pastries" class="px-6 py-3 bg-neutral-200 text-neutral-700 font-medium rounded-lg hover:bg-neutral-300 transition-colors">风味糕点</a>
+        <a href="#drinks" class="px-6 py-3 bg-neutral-200 text-neutral-700 font-medium rounded-lg hover:bg-neutral-300 transition-colors">特色饮品</a>
+        <a href="#food-streets" class="px-6 py-3 bg-neutral-200 text-neutral-700 font-medium rounded-lg hover:bg-neutral-300 transition-colors">美食街推荐</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 特色小吃 -->
+  <section id="local-specialties" class="py-12 bg-neutral-100">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-neutral-700 mb-4">特色小吃</h2>
+        <p class="text-neutral-600 max-w-2xl mx-auto">汉中特色小吃历史悠久，口味独特，是来汉中必尝的美食</p>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 汉中面皮 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
+          <div class="relative h-60">
+            <img src="images/food/汉中面皮.jpg" alt="汉中面皮" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end">
+              <div class="p-4 w-full">
+                <div class="flex justify-between items-center">
+                  <span class="text-white font-medium">点击查看详情</span>
+                  <button class="bg-white/20 hover:bg-white/30 p-2 rounded-full text-white transition-colors">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-neutral-700">汉中面皮</h3>
+              <div class="flex items-center">
+                <i class="fa fa-star text-accent"></i>
+                <span class="ml-1 text-accent font-medium">4.9</span>
+              </div>
+            </div>
+            <p class="text-neutral-600 mb-4">汉中面皮是陕西汉中地区的传统名吃，有2000多年历史，以白、薄、光、软、筋、香而闻名，口感软糯，味道香辣可口。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">必尝美食</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">早餐首选</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">香辣</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-accent font-bold">¥6-10</span>
+              <a href="https://ditu.amap.com/place/B0FFK4NBCP" class="text-primary hover:underline text-sm font-medium">查看店铺 <i class="fa fa-arrow-right ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 菜豆腐 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
+          <div class="relative h-60">
+            <img src="images/food/菜豆腐.jpg" alt="菜豆腐" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end">
+              <div class="p-4 w-full">
+                <div class="flex justify-between items-center">
+                  <span class="text-white font-medium">点击查看详情</span>
+                  <button class="bg-white/20 hover:bg-white/30 p-2 rounded-full text-white transition-colors">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-neutral-700">菜豆腐</h3>
+              <div class="flex items-center">
+                <i class="fa fa-star text-accent"></i>
+                <span class="ml-1 text-accent font-medium">4.8</span>
+              </div>
+            </div>
+            <p class="text-neutral-600 mb-4">菜豆腐是汉中地区的传统美食，以黄豆为原料制成，口感细腻，配以酸菜、辣椒油等调料，味道鲜美，营养丰富。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">传统美食</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">健康食品</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">清淡</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-accent font-bold">¥8-12</span>
+              <a href="https://ditu.amap.com/search?id=B039401YG6&city=610702&geoobj=107.030044%7C33.069294%7C107.059335%7C33.08254&query_type=IDQ&query=%E5%BC%A0%E6%98%8E%E5%AF%8C%E9%9D%A2%E7%9A%AE%E5%BA%97(%E6%B1%89%E4%B8%AD%E6%80%BB%E5%BA%97)&zoom=15.56" class="text-primary hover:underline text-sm font-medium">查看店铺 <i class="fa fa-arrow-right ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 浆水面 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
+          <div class="relative h-60">
+            <img src="images/food/汉中浆水面.jpg" alt="浆水面" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end">
+              <div class="p-4 w-full">
+                <div class="flex justify-between items-center">
+                  <span class="text-white font-medium">点击查看详情</span>
+                  <button class="bg-white/20 hover:bg-white/30 p-2 rounded-full text-white transition-colors">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-neutral-700">浆水面</h3>
+              <div class="flex items-center">
+                <i class="fa fa-star text-accent"></i>
+                <span class="ml-1 text-accent font-medium">4.7</span>
+              </div>
+            </div>
+            <p class="text-neutral-600 mb-4">浆水面是汉中地区夏季的传统美食，以发酵的酸菜汁为汤底，配以手工面条，清爽可口，开胃解暑。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">夏季美食</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">家常风味</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">酸爽</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-accent font-bold">¥10-15</span>
+              <a href="https://ditu.amap.com/search?query=%E7%A5%9D%E5%AE%B6%E6%B5%86%E6%B0%B4%E9%9D%A2&city=610700&geoobj=106.681006%7C32.957562%7C107.313505%7C33.243514&zoom=11.13" class="text-primary hover:underline text-sm font-medium">查看店铺 <i class="fa fa-arrow-right ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 梆梆面 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
+          <div class="relative h-60">
+            <img src="images/food/梆梆面.jpg" alt="梆梆面" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end">
+              <div class="p-4 w-full">
+                <div class="flex justify-between items-center">
+                  <span class="text-white font-medium">点击查看详情</span>
+                  <button class="bg-white/20 hover:bg-white/30 p-2 rounded-full text-white transition-colors">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-neutral-700">梆梆面</h3>
+              <div class="flex items-center">
+                <i class="fa fa-star text-accent"></i>
+                <span class="ml-1 text-accent font-medium">4.6</span>
+              </div>
+            </div>
+            <p class="text-neutral-600 mb-4">梆梆面是汉中地区的传统面食，因过去卖面人敲梆梆招揽顾客而得名。面条筋道，汤鲜味美，调料丰富。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">特色面食</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">夜宵首选</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">鲜香</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-accent font-bold">¥10-15</span>
+              <a href="https://ditu.amap.com/search?query=%E6%9E%97%E5%A8%83%E6%A2%86%E6%A2%86%E9%9D%A2(%E6%B1%89%E4%B8%B0%E8%B7%AF)&city=610700&geoobj=106.625689%7C32.957512%7C107.25842%7C33.243569&zoom=11.13" class="text-primary hover:underline text-sm font-medium">查看店铺 <i class="fa fa-arrow-right ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 核桃馍 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
+          <div class="relative h-60">
+            <img src="images/food/核桃馍.jpg" alt="核桃馍" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end">
+              <div class="p-4 w-full">
+                <div class="flex justify-between items-center">
+                  <span class="text-white font-medium">点击查看详情</span>
+                  <button class="bg-white/20 hover:bg-white/30 p-2 rounded-full text-white transition-colors">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-neutral-700">核桃馍</h3>
+              <div class="flex items-center">
+                <i class="fa fa-star text-accent"></i>
+                <span class="ml-1 text-accent font-medium">4.8</span>
+              </div>
+            </div>
+            <p class="text-neutral-600 mb-4">核桃馍是汉中宁强县的传统特色小吃，以面粉和核桃仁为主要原料，烤制而成，口感酥脆，香甜可口，营养丰富。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">传统小吃</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">便携食品</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">酥脆</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-accent font-bold">¥5-10</span>
+              <a href="https://ditu.amap.com/search?query=%E6%AD%A3%E5%AE%97%E5%AE%81%E5%BC%BA%E6%A0%B8%E6%A1%83%E9%A6%8D&city=610700&geoobj=106.637301%7C33.016312%7C107.059246%7C33.207049&zoom=11.71" class="text-primary hover:underline text-sm font-medium">查看店铺 <i class="fa fa-arrow-right ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 麻辣鸡 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
+          <div class="relative h-60">
+            <img src="images/food/麻辣鸡.jpg" alt="麻辣鸡" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end">
+              <div class="p-4 w-full">
+                <div class="flex justify-between items-center">
+                  <span class="text-white font-medium">点击查看详情</span>
+                  <button class="bg-white/20 hover:bg-white/30 p-2 rounded-full text-white transition-colors">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-neutral-700">麻辣鸡</h3>
+              <div class="flex items-center">
+                <i class="fa fa-star text-accent"></i>
+                <span class="ml-1 text-accent font-medium">4.9</span>
+              </div>
+            </div>
+            <p class="text-neutral-600 mb-4">麻辣鸡是汉中地区的传统名菜，以土鸡为主料，配以花椒、辣椒等调料烹制而成，肉质鲜嫩，麻辣鲜香。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">传统名菜</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">下酒好菜</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">麻辣</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-accent font-bold">¥40-60/份</span>
+              <a href="https://ditu.amap.com/search?query=%E9%BA%BB%E8%BE%A3%E9%B8%A1&city=610700&geoobj=106.670316%7C33.002618%7C107.03949%7C33.169548&zoom=11.91" class="text-primary hover:underline text-sm font-medium">查看店铺 <i class="fa fa-arrow-right ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-12 text-center">
+        <a href="#" class="inline-flex items-center px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors">
+          查看更多特色小吃
+          <i class="fa fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 传统名菜 -->
+  <section id="traditional-dishes" class="py-12 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-neutral-700 mb-4">传统名菜</h2>
+        <p class="text-neutral-600 max-w-2xl mx-auto">汉中传统名菜历史悠久，工艺独特，是汉中饮食文化的重要组成部分</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- 定军山腊肉 -->
+        <div class="bg-neutral-50 rounded-xl overflow-hidden hover-scale">
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-2/5 relative h-60 md:h-auto">
+              <img src="images/food/腊肉.jpeg" alt="定军山腊肉" class="w-full h-full object-cover">
+            </div>
+            <div class="md:w-3/5 p-6">
+              <div class="flex justify-between items-start mb-3">
+                <h3 class="text-xl font-bold text-neutral-700">定军山腊肉</h3>
+                <div class="flex items-center">
+                  <i class="fa fa-star text-accent"></i>
+                  <span class="ml-1 text-accent font-medium">4.9</span>
+                </div>
+              </div>
+              <p class="text-neutral-600 mb-4">定军山腊肉是汉中地区的传统名菜，选用当地土猪肉，经腌制、烟熏等多道工序制成，色泽红亮，香味浓郁，口感独特。</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">传统名菜</span>
+                <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">宴席必备</span>
+                <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">咸香</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-accent font-bold">¥68-88/份</span>
+                <a href="https://ditu.amap.com/search?query=%E5%AE%9A%E5%86%9B%E5%B1%B1%E8%85%8A%E8%82%89&city=610700&geoobj=106.255806%7C32.831248%7C107.108222%7C33.216957&zoom=10.7" class="text-primary hover:underline text-sm font-medium">查看店铺 <i class="fa fa-arrow-right ml-1"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 武侯宴 -->
+        <div class="bg-neutral-50 rounded-xl overflow-hidden hover-scale">
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-2/5 relative h-60 md:h-auto">
+              <img src="images/food/武侯宴.jpg" alt="武侯宴" class="w-full h-full object-cover">
+            </div>
+            <div class="md:w-3/5 p-6">
+              <div class="flex justify-between items-start mb-3">
+                <h3 class="text-xl font-bold text-neutral-700">武侯宴</h3>
+                <div class="flex items-center">
+                  <i class="fa fa-star text-accent"></i>
+                  <span class="ml-1 text-accent font-medium">4.8</span>
+                </div>
+              </div>
+              <p class="text-neutral-600 mb-4">武侯宴是为纪念诸葛亮而创制的特色宴席，融合了汉中当地的食材和烹饪技艺，菜品丰富，文化底蕴深厚。</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">文化美食</span>
+                <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">特色宴席</span>
+                <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">精致</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-accent font-bold">¥198-398/位</span>
+                <a href="https://ditu.amap.com/search?query=%E6%B1%89%E4%B8%AD%E6%AD%A6%E4%BE%AF%E5%AE%B4&city=610700&geoobj=106.637806%7C33.08924%7C106.820316%7C33.171724&zoom=12.92" class="text-primary hover:underline text-sm font-medium">查看店铺 <i class="fa fa-arrow-right ml-1"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 褒河鲜鱼 -->
+        <div class="bg-neutral-50 rounded-xl overflow-hidden hover-scale">
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-2/5 relative h-60 md:h-auto">
+              <img src="images/food/褒河鲜鱼.jpg" alt="褒河鲜鱼" class="w-full h-full object-cover">
+            </div>
+            <div class="md:w-3/5 p-6">
+              <div class="flex justify-between items-start mb-3">
+                <h3 class="text-xl font-bold text-neutral-700">褒河鲜鱼</h3>
+                <div class="flex items-center">
+                  <i class="fa fa-star text-accent"></i>
+                  <span class="ml-1 text-accent font-medium">4.9</span>
+                </div>
+              </div>
+              <p class="text-neutral-600 mb-4">褒河鲜鱼是汉中地区的特色名菜，以褒河中的鲜鱼为主料，配以多种调料烹制而成，鱼肉鲜嫩，汤鲜味美。</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">河鲜美食</span>
+                <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">时令佳肴</span>
+                <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">鲜香</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-accent font-bold">¥88-128/份</span>
+                <a href="https://ditu.amap.com/search?query=%E8%A4%92%E6%B2%B3%E9%B2%9C%E9%B1%BC&city=610700&geoobj=106.625358%7C33.088214%7C107.040127%7C33.275556&zoom=11.74" class="text-primary hover:underline text-sm font-medium">查看店铺 <i class="fa fa-arrow-right ml-1"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 西乡牛肉干 -->
+        <div class="bg-neutral-50 rounded-xl overflow-hidden hover-scale">
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-2/5 relative h-60 md:h-auto">
+              <img src="images/food/西乡牛肉干.jpg" alt="西乡牛肉干" class="w-full h-full object-cover">
+            </div>
+            <div class="md:w-3/5 p-6">
+              <div class="flex justify-between items-start mb-3">
+                <h3 class="text-xl font-bold text-neutral-700">西乡牛肉干</h3>
+                <div class="flex items-center">
+                  <i class="fa fa-star text-accent"></i>
+                  <span class="ml-1 text-accent font-medium">4.8</span>
+                </div>
+              </div>
+              <p class="text-neutral-600 mb-4">西乡牛肉干是汉中地区的传统名吃，选用优质牛肉，经腌制、烘烤等工艺制成，肉质紧实，味道鲜美，营养丰富。</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">传统小吃</span>
+                <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">便携食品</span>
+                <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">咸香</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-accent font-bold">¥68-98/斤</span>
+                <a href="https://ditu.amap.com/search?query=%E8%A5%BF%E4%B9%A1%E7%89%9B%E8%82%89%E5%B9%B2&city=610700&geoobj=106.961182%7C33.204209%7C106.968828%7C33.207661&zoom=17.5" class="text-primary hover:underline text-sm font-medium">查看店铺 <i class="fa fa-arrow-right ml-1"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-12 text-center">
+        <a href="#" class="inline-flex items-center px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors">
+          查看更多传统名菜
+          <i class="fa fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 地方菜系 -->
+  <section id="local-cuisine" class="py-12 bg-neutral-100">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-neutral-700 mb-4">地方菜系</h2>
+        <p class="text-neutral-600 max-w-2xl mx-auto">汉中地方菜系融合了南北风味，以鲜、香、辣为特色，独具一格</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- 汉中菜 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
+          <div class="relative h-48">
+            <img src="images/food/腊肉.jpeg" alt="汉中菜" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5">
+            <h3 class="text-xl font-bold text-neutral-700 mb-2">汉中菜</h3>
+            <p class="text-neutral-600 text-sm mb-3">汉中菜是陕南菜系的代表，以汉江鱼鲜、山珍野味为主要食材，口味鲜香，讲究火候。</p>
+            <div class="flex items-center justify-between">
+              <span class="text-accent font-medium">代表菜品：褒河鲜鱼、定军山腊肉</span>
+              <a href="https://zhuanlan.zhihu.com/p/668679127" class="text-primary hover:underline text-sm">了解更多</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 西乡菜 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
+          <div class="relative h-48">
+            <img src="images/food/西乡牛肉干.jpg" alt="西乡菜" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5">
+            <h3 class="text-xl font-bold text-neutral-700 mb-2">西乡菜</h3>
+            <p class="text-neutral-600 text-sm mb-3">西乡菜以牛肉、茶叶为主要特色，口味偏重，讲究调味，具有浓郁的地方特色。</p>
+            <div class="flex items-center justify-between">
+              <span class="text-accent font-medium">代表菜品：西乡牛肉干、茶香鸡</span>
+              <a href="https://baike.baidu.com/item/%E8%A5%BF%E4%B9%A1%E8%8F%9C%E8%B1%86%E8%85%90/4534974" class="text-primary hover:underline text-sm">了解更多</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 镇巴菜 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
+          <div class="relative h-48">
+            <img src="images/food/菜豆腐.jpg" alt="镇巴菜" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5">
+            <h3 class="text-xl font-bold text-neutral-700 mb-2">镇巴菜</h3>
+            <p class="text-neutral-600 text-sm mb-3">镇巴菜以腊肉、土豆、豆制品为主要食材，口味醇厚，具有浓郁的山区风味。</p>
+            <div class="flex items-center justify-between">
+              <span class="text-accent font-medium">代表菜品：镇巴腊肉、菜豆腐</span>
+              <a href="http://www.zb.gov.cn/zbxzf/mswh/201902/d60a4e5225ac4ddfa2b53c7c24d55eb6.shtml" class="text-primary hover:underline text-sm">了解更多</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 宁强菜 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
+          <div class="relative h-48">
+            <img src="images/food/麻辣鸡.jpg" alt="宁强菜" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5">
+            <h3 class="text-xl font-bold text-neutral-700 mb-2">宁强菜</h3>
+            <p class="text-neutral-600 text-sm mb-3">宁强菜以麻辣、鲜香为特色，受四川 cuisine 影响较大，口味较重，适合喜欢麻辣口味的人群。</p>
+            <div class="flex items-center justify-between">
+              <span class="text-accent font-medium">代表菜品：宁强麻辣鸡、核桃馍</span>
+              <a href="https://baike.baidu.com/item/%E6%B1%89%E4%B8%AD%E9%BA%BB%E8%BE%A3%E9%B8%A1/9746278" class="text-primary hover:underline text-sm">了解更多</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 风味糕点 -->
+  <section id="pastries" class="py-12 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-neutral-700 mb-4">风味糕点</h2>
+        <p class="text-neutral-600 max-w-2xl mx-auto">汉中风味糕点历史悠久，口感独特，是馈赠亲友的佳品</p>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- 西乡松花变蛋 -->
+        <div class="bg-neutral-50 rounded-xl overflow-hidden hover-scale">
+          <div class="relative h-48">
+            <img src="images/food/西乡松花变蛋.jpg" alt="西乡松花变蛋" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5">
+            <h3 class="text-lg font-bold text-neutral-700 mb-2">西乡松花变蛋</h3>
+            <p class="text-neutral-600 text-sm mb-3">西乡松花变蛋是汉中地区的传统名点，以鸡蛋为原料，经特殊工艺制成，蛋体晶莹，带有松枝花纹。</p>
+            <div class="flex items-center justify-between">
+              <span class="text-accent font-medium">¥2-3/个</span>
+              <a href="https://ditu.amap.com/search?query=%E8%A5%BF%E4%B9%A1%E6%9D%BE%E8%8A%B1%E5%8F%98%E8%9B%8B&city=610700&geoobj=107.028938%7C32.889179%7C107.756444%7C33.218259&zoom=10.93" class="text-primary hover:underline text-sm">购买</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 洋县枣糕馍 -->
+        <div class="bg-neutral-50 rounded-xl overflow-hidden hover-scale">
+          <div class="relative h-48">
+            <img src="images/food/洋县枣糕馍.jpg" alt="洋县枣糕馍" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5">
+            <h3 class="text-lg font-bold text-neutral-700 mb-2">洋县枣糕馍</h3>
+            <p class="text-neutral-600 text-sm mb-3">洋县枣糕馍是洋县地区的传统面食，以面粉和红枣为原料，蒸制而成，口感松软，香甜可口。</p>
+            <div class="flex items-center justify-between">
+              <span class="text-accent font-medium">¥1-2/个</span>
+              <a href="https://ditu.amap.com/search?query=%E6%B4%8B%E5%8E%BF%E6%9E%A3%E7%B3%95%E9%A6%8D&city=610700&geoobj=107.767161%7C32.984328%7C107.774808%7C32.98779&zoom=17.5" class="text-primary hover:underline text-sm">购买</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 城固上元观红豆腐 -->
+        <div class="bg-neutral-50 rounded-xl overflow-hidden hover-scale">
+          <div class="relative h-48">
+            <img src="images/food/上元观红豆腐.jpg" alt="城固上元观红豆腐" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5">
+            <h3 class="text-lg font-bold text-neutral-700 mb-2">上元观红豆腐</h3>
+            <p class="text-neutral-600 text-sm mb-3">城固上元观红豆腐是汉中地区的传统名点，以豆腐为原料，经发酵、腌制等工艺制成，色泽红亮，味道鲜美。</p>
+            <div class="flex items-center justify-between">
+              <span class="text-accent font-medium">¥15-20/盒</span>
+              <a href="https://ditu.amap.com/search?query=%E5%9F%8E%E5%9B%BA%E4%B8%8A%E5%85%83%E8%A7%82%E7%BA%A2%E8%B1%86%E8%85%90&city=610700&geoobj=107.541015%7C33.218123%7C107.561967%7C33.227583&zoom=16.05" class="text-primary hover:underline text-sm">购买</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 略阳罐罐茶 -->
+        <div class="bg-neutral-50 rounded-xl overflow-hidden hover-scale">
+          <div class="relative h-48">
+            <img src="images/food/略阳罐罐茶.jpg" alt="略阳罐罐茶" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5">
+            <h3 class="text-lg font-bold text-neutral-700 mb-2">略阳罐罐茶</h3>
+            <p class="text-neutral-600 text-sm mb-3">略阳罐罐茶是略阳县的传统饮品，也是一种特色糕点，由茶叶、面粉、核桃等原料制成，口感丰富。</p>
+            <div class="flex items-center justify-between">
+              <span class="text-accent font-medium">¥8-12/份</span>
+              <a href="https://ditu.amap.com/search?query=%E7%95%A5%E9%98%B3%E7%BD%90%E7%BD%90%E8%8C%B6&city=610700&geoobj=107.215822%7C33.08175%7C107.223469%7C33.085207&zoom=17.5" class="text-primary hover:underline text-sm">购买</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 特色饮品 -->
+  <section id="drinks" class="py-12 bg-neutral-100">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-neutral-700 mb-4">特色饮品</h2>
+        <p class="text-neutral-600 max-w-2xl mx-auto">汉中特色饮品独具风味，是体验当地文化的重要组成部分</p>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 午子仙毫 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
+          <div class="relative h-60">
+            <img src="images/food/午子仙毫.jpg" alt="午子仙毫" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-neutral-700">午子仙毫</h3>
+              <div class="flex items-center">
+                <i class="fa fa-star text-accent"></i>
+                <span class="ml-1 text-accent font-medium">4.9</span>
+              </div>
+            </div>
+            <p class="text-neutral-600 mb-4">午子仙毫是汉中名茶，产于西乡县午子山一带，外形微扁，汤色清澈，香气高爽，滋味鲜醇。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">名茶</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">养生饮品</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-accent font-bold">¥150-800/斤</span>
+              <a href="https://ditu.amap.com/search?query=%E5%8D%88%E5%AD%90%E4%BB%99%E6%AF%AB&city=610700&geoobj=106.138372%7C33.327299%7C106.165448%7C33.339508&zoom=15.68" class="text-primary hover:underline text-sm font-medium">查看店铺 <i class="fa fa-arrow-right ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 城固柑桔酒 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
+          <div class="relative h-60">
+            <img src="images/food/城固柑桔酒.jpg" alt="城固柑桔酒" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-neutral-700">城固柑桔酒</h3>
+              <div class="flex items-center">
+                <i class="fa fa-star text-accent"></i>
+                <span class="ml-1 text-accent font-medium">4.7</span>
+              </div>
+            </div>
+            <p class="text-neutral-600 mb-4">城固柑桔酒是以当地优质柑桔为原料，经发酵酿制而成的果酒，口感酸甜适中，果香浓郁。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">特色果酒</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">低度饮品</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-accent font-bold">¥38-128/瓶</span>
+              <a href="https://ditu.amap.com/search?query=%E5%9F%8E%E5%9B%BA%E6%9F%91%E6%A1%94%E9%85%92&city=610700&geoobj=107.766471%7C32.988659%7C107.774118%7C32.992121&zoom=17.5" class="text-primary hover:underline text-sm font-medium">查看店铺 <i class="fa fa-arrow-right ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 略阳乌鸡酒 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
+          <div class="relative h-60">
+            <img src="images/food/略阳乌鸡酒.jpg" alt="略阳乌鸡酒" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-neutral-700">略阳乌鸡酒</h3>
+              <div class="flex items-center">
+                <i class="fa fa-star text-accent"></i>
+                <span class="ml-1 text-accent font-medium">4.8</span>
+              </div>
+            </div>
+            <p class="text-neutral-600 mb-4">略阳乌鸡酒是以略阳特产乌鸡为原料，配以多种中药材，经发酵酿制而成的保健酒。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">保健酒</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">养生饮品</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-accent font-bold">¥88-298/瓶</span>
+              <a href="https://ditu.amap.com/search?query=%E7%95%A5%E9%98%B3%E4%B9%8C%E9%B8%A1%E9%85%92&city=610700&geoobj=107.13058%7C33.225373%7C107.261466%7C33.284443&zoom=13.4" class="text-primary hover:underline text-sm font-medium">查看店铺 <i class="fa fa-arrow-right ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 美食街推荐 -->
+  <section id="food-streets" class="py-12 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-neutral-700 mb-4">美食街推荐</h2>
+        <p class="text-neutral-600 max-w-2xl mx-auto">汉中这些美食街汇集了各种特色小吃和美食，是品尝当地美食的好去处</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 兴汉胜境美食街 -->
+        <div class="bg-neutral-50 rounded-xl overflow-hidden hover-scale">
+          <div class="relative h-56">
+            <img src="images/food/兴汉胜境美食街.jpg" alt="兴汉胜境美食街" class="w-full h-full object-cover">
+            <div class="absolute top-4 right-4 bg-primary text-white text-sm font-medium px-3 py-1 rounded-full">
+              热门
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-neutral-700 mb-2">兴汉胜境美食街</h3>
+            <div class="flex items-center text-neutral-500 text-sm mb-3">
+              <i class="fa fa-map-marker text-primary mr-1"></i>
+              <span>汉台区兴汉新区</span>
+            </div>
+            <p class="text-neutral-600 mb-4">兴汉胜境美食街位于兴汉新区，汇集了汉中各地的特色小吃和美食，环境优雅，是游客品尝汉中美食的首选之地。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">特色小吃</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">旅游景点</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">夜景美</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <div class="flex items-center">
+                <i class="fa fa-star text-accent"></i>
+                <span class="ml-1 text-accent font-medium">4.8</span>
+                <span class="ml-2 text-neutral-500">(2,568条评价)</span>
+              </div>
+              <a href="https://ditu.amap.com/search?query=%E5%85%B4%E6%B1%89%E8%83%9C%E5%A2%83&city=610700&geoobj=107.014538%7C33.069079%7C107.057762%7C33.088625&zoom=15" class="text-primary hover:underline text-sm font-medium">查看详情 <i class="fa fa-arrow-right ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 前进路美食街 -->
+        <div class="bg-neutral-50 rounded-xl overflow-hidden hover-scale">
+          <div class="relative h-56">
+            <img src="images/food/前进路美食街.jpg" alt="前进路美食街" class="w-full h-full object-cover">
+          </div>
+          <div class="absolute top-4 right-4 bg-primary text-white text-sm font-medium px-3 py-1 rounded-full">
+            热门
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-neutral-700 mb-2">前进路美食街</h3>
+            <div class="flex items-center text-neutral-500 text-sm mb-3">
+              <i class="fa fa-map-marker text-primary mr-1"></i>
+              <span>汉台区前进路</span>
+            </div>
+            <p class="text-neutral-600 mb-4">
+              前进路美食街位于前进路，是汉中地区的特色美食街，汇集了各种美味小吃和美食，是品尝汉中美食的最佳选择。
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">特色小吃</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">旅游景点</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">夜景美</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <div class="flex items-center">
+                <i class="fa fa-star text-accent"></i>
+                <span class="ml-1 text-accent font-medium">4.7</span>
+                <span class="ml-2 text-neutral-500">(2,978条评价)</span>
+              </div>
+              <a href="https://ditu.amap.com/search?query=%E5%89%8D%E8%BF%9B%E8%B7%AF%E7%BE%8E%E9%A3%9F%E8%A1%97&city=610700&geoobj=107.02591%7C33.102099%7C107.033557%7C33.105556&zoom=17.5" class="text-primary hover:underline text-sm font-medium">查看详情 <i class="fa fa-arrow-right ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+
+         <!-- 盛世国际夜市 -->
+         <div class="bg-neutral-50 rounded-xl overflow-hidden hover-scale">
+          <div class="relative h-56">
+            <img src="images/food/盛世国际夜市.jpg" alt="前进路美食街" class="w-full h-full object-cover">
+          </div>
+          <div class="absolute top-4 right-4 bg-primary text-white text-sm font-medium px-3 py-1 rounded-full">
+            热门
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-neutral-700 mb-2">盛世国际夜市</h3>
+            <div class="flex items-center text-neutral-500 text-sm mb-3">
+              <i class="fa fa-map-marker text-primary mr-1"></i>
+              <span>汉台区东一环路盛世国际</span>
+            </div>
+            <p class="text-neutral-600 mb-4">
+              盛世国际夜市位于汉台区东一环路陕西理工大学东门斜对面，是位居美食，购物，休闲娱乐，健身和生活服务的一条商业街。
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">特色小吃</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">购物</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">休闲娱乐</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <div class="flex items-center">
+                <i class="fa fa-star text-accent"></i>
+                <span class="ml-1 text-accent font-medium">4.8</span>
+                <span class="ml-2 text-neutral-500">(1,432条评价)</span>
+              </div>
+              <a href="https://ditu.amap.com/search?query=%E7%9B%9B%E4%B8%96%E5%9B%BD%E9%99%85&city=610700&geoobj=107.020078%7C33.075767%7C107.058258%7C33.093031&zoom=15.18" class="text-primary hover:underline text-sm font-medium">查看详情 <i class="fa fa-arrow-right ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+              

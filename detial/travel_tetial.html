@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>汉中3天2晚经典文化之旅 - 汉中旅游网</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#165DFF',
+            secondary: '#4CAF50',
+            accent: '#FF7043',
+            neutral: {
+              100: '#F5F7FA',
+              200: '#E4E7ED',
+              300: '#C0C6CF',
+              400: '#909399',
+              500: '#606266',
+              600: '#303133',
+              700: '#1E1E1E',
+            }
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .text-shadow-lg {
+        text-shadow: 0 4px 8px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+      }
+      .transition-custom {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .route-gradient {
+        background: linear-gradient(135deg, #165DFF 0%, #0A3380 100%);
+      }
+      .card-hover {
+        @apply hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300;
+      }
+      .day-toggle {
+        @apply cursor-pointer transition-all duration-200 hover:bg-primary/5;
+      }
+      .day-content {
+        @apply max-h-0 overflow-hidden transition-all duration-500 ease-in-out;
+      }
+      .day-expanded {
+        @apply max-h-960;
+      }
+    }
+  </style>
+</head>
+<body class="font-inter bg-neutral-100 text-neutral-600">
+  <!-- 导航栏 -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center space-x-2">
+          <i class="fa fa-map-marker text-primary text-2xl"></i>
+          <span class="text-xl font-bold text-primary">汉中旅游网</span>
+        </a>
+        
+        <!-- 桌面导航 -->
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="text-neutral-600 hover:text-primary font-medium">首页</a>
+          <a href="scenic_spots.html" class="text-neutral-600 hover:text-primary font-medium">景点介绍</a>
+          <a href="travel_routes.html" class="text-neutral-600 hover:text-primary font-medium">旅游线路</a>
+          <a href="travel_tips.html" class="text-neutral-600 hover:text-primary font-medium">旅游攻略</a>
+          <a href="food_recommendation.html" class="text-neutral-600 hover:text-primary font-medium">美食推荐</a>
+          <a href="han_culture.html" class="text-neutral-600 hover:text-primary font-medium">汉文化活动</a>
+          <a href="contact_us.html" class="text-neutral-600 hover:text-primary font-medium">联系我们</a>
+        </nav>
+        
+        <!-- 用户操作区 -->
+        <div class="flex items-center space-x-4">
+          <a href="login.html" class="hidden sm:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90 transition-colors">
+            <i class="fa fa-user-circle mr-2"></i>登录
+          </a>
+          
+          <!-- 移动端菜单按钮 -->
+          <button id="mobile-menu-button" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-neutral-600 hover:text-primary hover:bg-neutral-100 focus:outline-none">
+            <i class="fa fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 移动端导航菜单 -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">首页</a>
+        <a href="scenic_spots.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">景点介绍</a>
+        <a href="travel_routes.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">旅游线路</a>
+        <a href="travel_tips.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">旅游攻略</a>
+        <a href="food_recommendation.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">美食推荐</a>
+        <a href="han_culture.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">汉文化活动</a>
+        <a href="contact_us.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">联系我们</a>
+        <a href="login.html" class="block px-3 py-2 mt-4 rounded-md text-base font-medium text-white bg-primary hover:bg-primary/90 text-center">
+          <i class="fa fa-user-circle mr-2"></i>登录
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 页面主体 -->
+  <main class="min-h-screen pt-16 sm:pt-20 pb-12">
+    <!-- 面包屑导航 -->
+    <div class="bg-white py-4">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="flex text-sm" aria-label="Breadcrumb">
+          <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+              <a href="index.html" class="inline-flex items-center text-neutral-600 hover:text-primary">
+                <i class="fa fa-home mr-1"></i>
+                首页
+              </a>
+            </li>
+            <li>
+              <div class="flex items-center">
+                <i class="fa fa-chevron-right text-neutral-400 text-xs mx-2"></i>
+                <a href="travel_routes.html" class="text-neutral-600 hover:text-primary">旅游线路</a>
+              </div>
+            </li>
+            <li aria-current="page">
+              <div class="flex items-center">
+                <i class="fa fa-chevron-right text-neutral-400 text-xs mx-2"></i>
+                <span class="text-neutral-500">汉中3天2晚经典文化之旅</span>
+              </div>
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 线路头部信息 -->
+    <section class="bg-white mb-8">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div class="lg:col-span-2">
+            <h1 class="text-3xl font-bold text-neutral-700 mb-2">汉中3天2晚经典文化之旅</h1>
+            <p class="text-lg text-neutral-600 mb-4">石门栈道+武侯祠+青木川古镇 | 自然奇观与三国文化深度体验</p>
+            <div class="flex flex-wrap gap-3 mb-6">
+              <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">3天2晚</span>
+              <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm">文化古迹</span>
+              <span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm">美食体验</span>
+              <span class="bg-neutral-200 text-neutral-600 px-3 py-1 rounded-full text-sm">精品小团</span>
+            </div>
+            <div class="flex items-center text-sm text-neutral-500 mb-6">
+              <div class="flex items-center mr-4">
+                <i class="fa fa-star text-yellow-400 mr-1"></i>
+                <span>4.9</span>
+                <span class="ml-1">(238人评价)</span>
+              </div>
+              <div class="flex items-center mr-4">
+                <i class="fa fa-user text-neutral-400 mr-1"></i>
+                <span>500+人已报名</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-calendar text-neutral-400 mr-1"></i>
+                <span>每周二/四/六发团</span>
+              </div>
+            </div>
+          </div>
+          <div class="bg-neutral-50 rounded-xl p-6">
+            <div class="mb-4">
+              <div class="text-neutral-500 mb-1">优惠价</div>
+              <div class="flex items-end">
+                <span class="text-3xl font-bold text-primary">¥899</span>
+                <span class="text-sm text-neutral-500 ml-2 mb-1">/人起</span>
+              </div>
+            </div>
+            <div class="mb-6">
+              <div class="text-sm text-neutral-500 mb-1">出发日期</div>
+              <div class="flex items-center">
+                <i class="fa fa-calendar-alt text-neutral-400 mr-2"></i>
+                <select class="bg-white border border-neutral-300 rounded-lg px-3 py-2 text-neutral-700 focus:outline-none focus:ring-2 focus:ring-primary/50">
+                  <option>2025-05-25（周六）</option>
+                  <option>2025-05-27（周一）</option>
+                  <option>2025-05-30（周四）</option>
+                  <option>2025-06-01（周六）</option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-6">
+              <div class="text-sm text-neutral-500 mb-1">出行人数</div>
+              <div class="flex items-center">
+                <button class="bg-neutral-200 text-neutral-700 rounded-l-lg px-3 py-2">-</button>
+                <input type="number" value="2" min="1" class="bg-white border-y border-neutral-300 w-16 text-center py-2 text-neutral-700">
+                <button class="bg-neutral-200 text-neutral-700 rounded-r-lg px-3 py-2">+</button>
+              </div>
+            </div>
+            <div class="flex flex-col space-y-3">
+              <button class="w-full flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary/90 transition-colors">
+                <i class="fa fa-shopping-cart mr-2"></i>
+                立即预订
+              </button>
+              <button class="w-full flex justify-center items-center px-6 py-3 border border-primary text-base font-medium rounded-md text-primary bg-white hover:bg-primary/5 transition-colors">
+                <i class="fa fa-heart mr-2"></i>
+                加入收藏
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 行程亮点 -->
+    <section class="bg-white rounded-xl shadow-sm mb-8 overflow-hidden">
+      <div class="p-6 border-b border-neutral-200">
+        <h2 class="text-2xl font-bold text-neutral-700 mb-2">行程亮点</h2>
+        <p class="text-neutral-600">精选汉中核心景点，深度体验自然与人文魅力</p>
+      </div>
+      <div class="p-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-primary/5 rounded-lg p-5 card-hover">
+            <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mb-4">
+              <i class="fa fa-map-marker-alt text-primary text-xl"></i>
+            </div>
+            <h3 class="text-lg font-medium text-neutral-700 mb-2">精华景点全覆盖</h3>
+            <p class="text-neutral-600">游览石门栈道、武侯祠、青木川古镇三大标志性景点，领略自然与人文双重魅力</p>
+          </div>
+          <div class="bg-primary/5 rounded-lg p-5 card-hover">
+            <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mb-4">
+              <i class="fa fa-utensils text-primary text-xl"></i>
+            </div>
+            <h3 class="text-lg font-medium text-neutral-700 mb-2">地道美食体验</h3>
+            <p class="text-neutral-600">全程安排特色餐饮，品尝汉中面皮、褒河鲜鱼、青木川麻辣鸡等非遗美食</p>
+          </div>
+          <div class="bg-primary/5 rounded-lg p-5 card-hover">
+            <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mb-4">
+              <i class="fa fa-user-tie text-primary text-xl"></i>
+            </div>
+            <h3 class="text-lg font-medium text-neutral-700 mb-2">专业导游服务</h3>
+            <p class="text-neutral-600">10年以上经验导游全程陪同，深度讲解历史文化背景，让旅行更有内涵</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 行程详情 -->
+    <section class="bg-white rounded-xl shadow-sm mb-8 overflow-hidden">
+      <div class="p-6 border-b border-neutral-200">
+        <h2 class="text-2xl font-bold text-neutral-700 mb-2">行程详情</h2>
+        <p class="text-neutral-600">精心规划的3天2晚行程，让您深度体验汉中魅力</p>
+      </div>
+      
+      <!-- 行程天数切换 -->
+      <div class="divide-y divide-neutral-200">
+        <!-- 第一天 -->
+        <div class="day-item">
+          <div class="day-toggle p-6 flex items-center justify-between cursor-pointer">
+            <div class="flex items-center">
+              <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold mr-4">
+                1
+              </div>
+              <div>
+                <h3 class="text-xl font-medium text-neutral-700">Day 1：石门栈道 + 拜将坛</h3>
+                <p class="text-neutral-500">自然奇观与历史溯源</p>
+              </div>
+            </div>
+            <i class="fa fa-chevron-down text-neutral-400 transition-transform duration-300"></i>
+          </div>
+          <div class="day-content px-6 pb-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="md:col-span-2">
+                <div class="mb-4">
+                  <h4 class="text-lg font-medium text-neutral-700 mb-2">上午：石门栈道景区</h4>
+                  <p class="text-neutral-600 mb-3">
+                    08:30 汉中市区酒店接客，乘车前往**石门栈道景区**（车程30分钟）。
+                    09:30 游览石门栈道，欣赏汉江峡谷风光与汉代摩崖石刻，感受“中国最早人工隧道”的震撼。
+                  </p>
+                  <div class="flex items-center text-sm text-neutral-500">
+                    <div class="flex items-center mr-4">
+                      <i class="fa fa-clock text-neutral-400 mr-1"></i>
+                      <span>约4小时</span>
+                    </div>
+                    <div class="flex items-center">
+                      <i class="fa fa-map text-neutral-400 mr-1"></i>
+                      <span>汉中市汉台区</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="mb-4">
+                  <h4 class="text-lg font-medium text-neutral-700 mb-2">中午：特色午餐</h4>
+                  <p class="text-neutral-600 mb-3">
+                    12:00 景区附近午餐，品尝**汉中面皮+菜豆腐**（当地早餐标配，面皮软糯搭配酸辣调料，菜豆腐清爽解腻）。
+                  </p>
+                  <div class="flex items-center text-sm text-neutral-500">
+                    <div class="flex items-center mr-4">
+                      <i class="fa fa-clock text-neutral-400 mr-1"></i>
+                      <span>约1小时</span>
+                    </div>
+                    <div class="flex items-center">
+                      <i class="fa fa-utensils text-neutral-400 mr-1"></i>
+                      <span>当地特色餐厅</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 class="text-lg font-medium text-neutral-700 mb-2">下午：拜将坛</h4>
+                  <p class="text-neutral-600 mb-3">
+                    14:00 前往**拜将坛**，了解韩信拜将典故，参观汉代建筑与历史文物。
+                    16:30 返回市区，入住酒店休息（可选汉台区四星酒店或特色民宿）。
+                  </p>
+                  <div class="flex items-center text-sm text-neutral-500">
+                    <div class="flex items-center mr-4">
+                      <i class="fa fa-clock text-neutral-400 mr-1"></i>
+                      <span>约3小时</span>
+                    </div>
+                    <div class="flex items-center">
+                      <i class="fa fa-map text-neutral-400 mr-1"></i>
+                      <span>汉中市汉台区</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bg-neutral-50 rounded-lg p-4">
+                <h4 class="text-lg font-medium text-neutral-700 mb-3">今日景点</h4>
+                <div class="space-y-4">
+                  <div class="rounded-lg overflow-hidden">
+                    <img src="https://picsum.photos/id/1036/600/400" alt="石门栈道" class="w-full h-40 object-cover">
+                    <div class="p-3">
+                      <h5 class="font-medium text-neutral-700">石门栈道</h5>
+                      <p class="text-sm text-neutral-500">世界第九大奇迹，中国古代交通史上的瑰宝</p>
+                    </div>
+                  </div>
+                  <div class="rounded-lg overflow-hidden">
+                    <img src="https://picsum.photos/id/1059/600/400" alt="拜将坛" class="w-full h-40 object-cover">
+                    <div class="p-3">
+                      <h5 class="font-medium text-neutral-700">拜将坛</h5>
+                      <p class="text-sm text-neutral-500">刘邦拜韩信为大将的古坛，历史文化遗址</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 第二天 -->
+        <div class="day-item">
+          <div class="day-toggle p-6 flex items-center justify-between cursor-pointer">
+            <div class="flex items-center">
+              <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold mr-4">
+                2
+              </div>
+              <div>
+                <h3 class="text-xl font-medium text-neutral-700">Day 2：武侯祠 + 诸葛古镇 + 青木川古镇</h3>
+                <p class="text-neutral-500">三国文化沉浸之旅</p>
+              </div>
+            </div>
+            <i class="fa fa-chevron-down text-neutral-400 transition-transform duration-300"></i>
+          </div>
+          <div class="day-content px-6 pb-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="md:col-span-2">
+                <div class="mb-4">
+                  <h4 class="text-lg font-medium text-neutral-700 mb-2">上午：武侯祠</h4>
+                  <p class="text-neutral-600 mb-3">
+                    08:00 酒店早餐后，乘车前往**勉县武侯祠**（车程1小时）。
+                    09:30 跟随导游深度游览“天下第一武侯祠”，聆听诸葛亮生平故事，参观古建与千年旱莲。
+                  </p>
+                  <div class="flex items-center text-sm text-neutral-500">
+                    <div class="flex items-center mr-4">
+                      <i class="fa fa-clock text-neutral-400 mr-1"></i>
+                      <span>约4小时</span>
+                    </div>
+                    <div class="flex items-center">
+                      <i class="fa fa-map text-neutral-400 mr-1"></i>
+                      <span>汉中市勉县</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="mb-4">
+                  <h4 class="text-lg font-medium text-neutral-700 mb-2">中午：武侯宴</h4>
+                  <p class="text-neutral-600 mb-3">
+                    12:00 古镇内午餐，品尝**武侯宴**（以三国典故命名的特色宴席，如“草船借箭”冷盘、“七擒孟获”热菜）。
+                  </p>
+                  <div class="flex items-center text-sm text-neutral-500">
+                    <div class="flex items-center mr-4">
+                      <i class="fa fa-clock text-neutral-400 mr-1"></i>
+                      <span>约1.5小时</span>
+                    </div>
+                    <div class="flex items-center">
+                      <i class="fa fa-utensils text-neutral-400 mr-1"></i>
+                      <span>诸葛古镇主题餐厅</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="mb-4">
+                  <h4 class="text-lg font-medium text-neutral-700 mb-2">下午：诸葛古镇</h4>
+                  <p class="text-neutral-600 mb-3">
+                    14:00 漫步**诸葛古镇**，沉浸式体验三国主题场景，观看《出师表》实景演出（自费可选）。
+                    16:30 乘车前往青木川古镇（车程2小时），途中欣赏秦巴山区风光。
+                  </p>
+                  <div class="flex items-center text-sm text-neutral-500">
+                    <div class="flex items-center mr-4">
+                      <i class="fa fa-clock text-neutral-400 mr-1"></i>
+                      <span>约4.5小时</span>
+                    </div>
+                    <div class="flex items-center">
+                      <i class="fa fa-map text-neutral-400 mr-1"></i>
+                      <span>汉中市勉县/宁强县</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 class="text-lg font-medium text-neutral-700 mb-2">晚上：青木川古镇</h4>
+                  <p class="text-neutral-600 mb-3">
+                    18:30 抵达青木川，入住古镇内特色客栈，晚餐品尝**青木川麻辣鸡**（肉质鲜嫩，麻辣鲜香）。
+                    20:00 自由游览古镇夜景，感受“一脚踏三省”的独特地理魅力。
+                  </p>
+                  <div class="flex items-center text-sm text-neutral-500">
+                    <div class="flex items-center mr-4">
+                      <i class="fa fa-clock text-neutral-400 mr-1"></i>
+                      <span>约3.5小时</span>
+                    </div>
+                    <div class="flex items-center">
+                      <i class="fa fa-map text-neutral-400 mr-1"></i>
+                      <span>汉中市宁强县</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bg-neutral-50 rounded-lg p-4">
+                <h4 class="text-lg font-medium text-neutral-700 mb-3">今日景点</h4>
+                <div class="space-y-4">
+                  <div class="rounded-lg overflow-hidden">
+                    <img src="https://picsum.photos/id/1042/600/400" alt="武侯祠" class="w-full h-40 object-cover">
+                    <div class="p-3">
+                      <h5 class="font-medium text-neutral-700">武侯祠</h5>
+                      <p class="text-sm text-neutral-500">纪念诸葛亮的专祠，全国重点文物保护单位</p>
+                    </div>
+                  </div>
+                  <div class="rounded-lg overflow-hidden">
+                    <img src="https://picsum.photos/id/1058/600/400" alt="诸葛古镇" class="w-full h-40 object-cover">
+                    <div class="p-3">
+                      <h5 class="font-medium text-neutral-700">诸葛古镇</h5>
+                      <p class="text-sm text-neutral-500">以三国文化为主题的特色古镇</p>
+                    </div>
+                  </div>
+                  <div class="rounded-lg overflow-hidden">
+                    <img src="https://picsum.photos/id/1067/600/400" alt="青木川古镇" class="w-full h-40 object-cover">
+                    <div class="p-3">
+                      <h5 class="font-medium text-neutral-700">青木川古镇</h5>
+                      <p class="text-sm text-neutral-500">保存完好的明清古镇，“一脚踏三省”</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 第三天 -->
+        <div class="day-item">
+          <div class="day-toggle p-6 flex items-center justify-between cursor-pointer">
+            <div class="flex items-center">
+              <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold mr-4">
+                3
+              </div>
+              <div>
+                <h3 class="text-xl font-medium text-neutral-700">Day 3：青木川古镇 + 返回</h3>
+                <p class="text-neutral-500">明清遗韵与返程</p>
+              </div>
+            </div>
+            <i class="fa fa-chevron-down text-neutral-400 transition-transform duration-300"></i>
+          </div>
+          <div class="day-content px-6 pb-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="md:col-span-2">
+                <div class="mb-4">
+                  <h4 class="text-lg font-medium text-neutral-700 mb-2">上午：青木川古镇</h4>
+                  <p class="text-neutral-600 mb-3">
+                    08:30 早餐后游览**青木川古镇老街**，参观魏辅唐故居、烟馆遗址等明清建筑，了解民国往事。
+                    10:30 参与**汉服体验**（自费可选），穿汉服漫步古镇，拍摄古风写真。
+                  </p>
+                  <div class="flex items-center text-sm text-neutral-500">
+                    <div class="flex items-center mr-4">
+                      <i class="fa fa-clock text-neutral-400 mr-1"></i>
+                      <span>约3小时</span>
+                    </div>
+                    <div class="flex items-center">
+                      <i class="fa fa-map text-neutral-400 mr-1"></i>
+                      <span>汉中市宁强县</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="mb-4">
+                  <h4 class="text-lg font-medium text-neutral-700 mb-2">中午：特色午餐</h4>
+                  <p class="text-neutral-600 mb-3">
+                    12:00 古镇内午餐，品尝**罐罐茶**（咸香茶配麻花、核桃仁）和**洋芋糍粑**。
+                  </p>
+                  <div class="flex items-center text-sm text-neutral-500">
+                    <div class="flex items-center mr-4">
+                      <i class="fa fa-clock text-neutral-400 mr-1"></i>
+                      <span>约1小时</span>
+                    </div>
+                    <div class="flex items-center">
+                      <i class="fa fa-utensils text-neutral-400 mr-1"></i>
+                      <span>古镇农家餐厅</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 class="text-lg font-medium text-neutral-700 mb-2">下午：返回汉中</h4>
+                  <p class="text-neutral-600 mb-3">
+                    13:30 乘车返回汉中市区（车程3小时），途中停靠**西乡茶园**（免费品茶，可购明前茶）。
+                    17:00 抵达市区，行程结束，赠送汉中特产伴手礼（面皮调料包或菜豆腐乳）。
+                  </p>
+                  <div class="flex items-center text-sm text-neutral-500">
+                    <div class="flex items-center mr-4">
+                      <i class="fa fa-clock text-neutral-400 mr-1"></i>
+                      <span>约4小时</span>
+                    </div>
+                    <div class="flex items-center">
+                      <i class="fa fa-map text-neutral-400 mr-1"></i>
+                      <span>返回汉中市区</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bg-neutral-50 rounded-lg p-4">
+                <h4 class="text-lg font-medium text-neutral-700 mb-3">今日景点</h4>
+                <div class="space-y-4">
+                  <div class="rounded-lg overflow-hidden">
+                    <img src="https://picsum.photos/id/1066/600/400" alt="青木川古镇" class="w-full h-40 object-cover">
+                    <div class="p-3">
+                      <h5 class="font-medium text-neutral-700">青木川古镇</h5>
+                      <p class="text-sm text-neutral-500">保存完好的明清古镇，感受民国风情</p>
+                    </div>
+                  </div>
+                  <div class="rounded-lg overflow-hidden">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>

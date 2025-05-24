@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>联系我们 - 汉中旅游网</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#165DFF',
+            secondary: '#4CAF50',
+            accent: '#FF7043',
+            neutral: {
+              100: '#F5F7FA',
+              200: '#E4E7ED',
+              300: '#C0C6CF',
+              400: '#909399',
+              500: '#606266',
+              600: '#303133',
+              700: '#1E1E1E',
+            }
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .text-shadow-lg {
+        text-shadow: 0 4px 8px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+      }
+      .transition-custom {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .hover-scale {
+        transition: transform 0.3s ease;
+      }
+      .hover-scale:hover {
+        transform: scale(1.03);
+      }
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease;
+      }
+      .faq-answer.active {
+        max-height: 500px;
+      }
+      .faq-icon {
+        transition: transform 0.3s ease;
+      }
+      .faq-icon.active {
+        transform: rotate(180deg);
+      }
+    }
+  </style>
+</head>
+<body class="font-inter bg-neutral-100 text-neutral-600">
+  <!-- 导航栏 -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center space-x-2">
+          <i class="fa fa-map-marker text-primary text-2xl"></i>
+          <span class="text-xl font-bold text-primary">汉中旅游网</span>
+        </a>
+        
+        <!-- 桌面导航 -->
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="text-neutral-600 hover:text-primary font-medium">首页</a>
+          <a href="scenic_spots.html" class="text-neutral-600 hover:text-primary font-medium">景点介绍</a>
+          <a href="travel_routes.html" class="text-neutral-600 hover:text-primary font-medium">旅游线路</a>
+          <a href="travel_tips.html" class="text-neutral-600 hover:text-primary font-medium">旅游攻略</a>
+          <a href="food_recommendation.html" class="text-neutral-600 hover:text-primary font-medium">美食推荐</a>
+          <a href="han_culture.html" class="text-neutral-600 hover:text-primary font-medium">汉文化活动</a>
+          <a href="contact_us.html" class="text-primary font-medium">联系我们</a>
+        </nav>
+        
+        <!-- 用户操作区 -->
+        <div class="flex items-center space-x-4">
+          <a href="login.html" class="hidden sm:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90 transition-colors">
+            <i class="fa fa-user-circle mr-2"></i>登录/注册
+          </a>
+          
+          <!-- 移动端菜单按钮 -->
+          <button id="mobile-menu-button" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-neutral-600 hover:text-primary hover:bg-neutral-100 focus:outline-none">
+            <i class="fa fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 移动端导航菜单 -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">首页</a>
+        <a href="scenic_spots.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">景点介绍</a>
+        <a href="travel_routes.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">旅游线路</a>
+        <a href="travel_tips.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">旅游攻略</a>
+        <a href="food_recommendation.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">美食推荐</a>
+        <a href="han_culture.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">汉文化活动</a>
+        <a href="contact_us.html" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-primary">联系我们</a>
+        <a href="login.html" class="block px-3 py-2 mt-4 rounded-md text-base font-medium text-white bg-primary hover:bg-primary/90 text-center">
+          <i class="fa fa-user-circle mr-2"></i>登录/注册
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 页面标题区域 -->
+  <section class="pt-16 sm:pt-20 pb-8 bg-primary/5">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-neutral-700 mb-2">联系我们</h1>
+        <div class="flex items-center justify-center text-neutral-500 mb-4">
+          <a href="index.html" class="hover:text-primary transition-colors">首页</a>
+          <i class="fa fa-chevron-right mx-2 text-xs"></i>
+          <span class="text-primary">联系我们</span>
+        </div>
+        <p class="text-neutral-600 max-w-2xl mx-auto">有任何问题或建议，欢迎随时联系我们</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系信息和表单区域 -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- 联系信息 -->
+        <div class="lg:col-span-1">
+          <div class="bg-neutral-50 rounded-xl p-8 shadow-sm h-full">
+            <h2 class="text-2xl font-bold text-neutral-700 mb-6">联系方式</h2>
+            
+            <div class="space-y-6">
+              <div class="flex items-start">
+                <div class="bg-primary/10 p-3 rounded-full text-primary">
+                  <i class="fa fa-map-marker text-xl"></i>
+                </div>
+                <div class="ml-4">
+                  <h3 class="text-lg font-medium text-neutral-700 mb-1">地址</h3>
+                  <p class="text-neutral-600">陕西省汉中市汉台区东大街100号汉中旅游服务中心</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="bg-primary/10 p-3 rounded-full text-primary">
+                  <i class="fa fa-phone text-xl"></i>
+                </div>
+                <div class="ml-4">
+                  <h3 class="text-lg font-medium text-neutral-700 mb-1">电话</h3>
+                  <p class="text-neutral-600">旅游咨询：0916-12345678</p>
+                  <p class="text-neutral-600">投诉建议：0916-87654321</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="bg-primary/10 p-3 rounded-full text-primary">
+                  <i class="fa fa-envelope text-xl"></i>
+                </div>
+                <div class="ml-4">
+                  <h3 class="text-lg font-medium text-neutral-700 mb-1">邮箱</h3>
+                  <p class="text-neutral-600">info@hanzhongtourism.com</p>
+                  <p class="text-neutral-600">weixin@hanzhongtourism.com</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="bg-primary/10 p-3 rounded-full text-primary">
+                  <i class="fa fa-clock text-xl"></i>
+                </div>
+                <div class="ml-4">
+                  <h3 class="text-lg font-medium text-neutral-700 mb-1">工作时间</h3>
+                  <p class="text-neutral-600">周一至周五: 9:00 - 18:00</p>
+                  <p class="text-neutral-600">周六至周日: 10:00 - 16:00</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-8">
+              <h3 class="text-lg font-medium text-neutral-700 mb-3">关注我们</h3>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 联系表单 -->
+        <div class="lg:col-span-2">
+          <div class="bg-neutral-50 rounded-xl p-8 shadow-sm">
+            <h2 class="text-2xl font-bold text-neutral-700 mb-6">发送消息</h2>
+            
+            <form id="contact-form" class="space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label for="name" class="block text-sm font-medium text-neutral-700 mb-2">姓名</label>
+                  <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors" placeholder="请输入您的姓名" required>
+                </div>
+                
+                <div>
+                  <label for="email" class="block text-sm font-medium text-neutral-700 mb-2">邮箱</label>
+                  <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors" placeholder="请输入您的邮箱" required>
+                </div>
+              </div>
+              
+              <div>
+                <label for="subject" class="block text-sm font-medium text-neutral-700 mb-2">主题</label>
+                <input type="text" id="subject" name="subject" class="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors" placeholder="请输入消息主题" required>
+              </div>
+              
+              <div>
+                <label for="message" class="block text-sm font-medium text-neutral-700 mb-2">消息内容</label>
+                <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors" placeholder="请输入您的消息内容" required></textarea>
+              </div>
+              
+              <div>
+                <label class="flex items-center">
+                  <input type="checkbox" class="h-5 w-5 text-primary border-neutral-300 rounded focus:ring-primary">
+                  <span class="ml-2 text-sm text-neutral-600">我同意根据隐私政策处理我的个人数据</span>
+                </label>
+              </div>
+              
+              <div>
+                <button type="submit" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary/90 transition-colors">
+                  <i class="fa fa-paper-plane mr-2"></i>
+                  发送消息
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 常见问题区域 -->
+  <section class="py-12 bg-neutral-100">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-neutral-700 mb-4">常见问题</h2>
+        <p class="text-neutral-600 max-w-2xl mx-auto">我们收集了一些游客经常问到的问题，希望能帮助您解决疑惑</p>
+      </div>
+      
+      <div class="max-w-3xl mx-auto">
+        <div class="space-y-4">
+          <!-- FAQ 项目 1 -->
+          <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-6 text-left focus:outline-none">
+              <span class="text-lg font-medium text-neutral-700">如何预订汉中的景点门票？</span>
+              <i class="fa fa-chevron-down text-primary faq-icon"></i>
+            </button>
+            <div class="faq-answer px-6 pb-6">
+              <p class="text-neutral-600">您可以通过以下方式预订汉中的景点门票：</p>
+              <ul class="list-disc pl-5 mt-2 space-y-1">
+                <li>在我们的官方网站上直接预订</li>
+                <li>通过我们的官方微信公众号预订</li>
+                <li>在各大旅游平台（如携程、去哪儿、飞猪等）上搜索并预订</li>
+                <li>在景点现场的售票处购买</li>
+              </ul>
+              <p class="mt-2 text-neutral-600">建议您提前预订门票，特别是在旅游高峰期，以免耽误您的行程。</p>
+            </div>
+          </div>
+          
+          <!-- FAQ 项目 2 -->
+          <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-6 text-left focus:outline-none">
+              <span class="text-lg font-medium text-neutral-700">汉中最佳旅游季节是什么时候？</span>
+              <i class="fa fa-chevron-down text-primary faq-icon"></i>
+            </button>
+            <div class="faq-answer px-6 pb-6">
+              <p class="text-neutral-600">汉中四季分明，每个季节都有其独特的魅力：</p>
+              <ul class="list-disc pl-5 mt-2 space-y-1">
+                <li>春季（3-4月）：油菜花盛开，是观赏油菜花的最佳时节</li>
+                <li>夏季（5-8月）：气候凉爽，是避暑的好去处</li>
+                <li>秋季（9-11月）：秋高气爽，是登山、赏红叶的好时机</li>
+                <li>冬季（12-2月）：可以体验汉中的民俗文化和温泉</li>
+              </ul>
+              <p class="mt-2 text-neutral-600">总体来说，春季和秋季是汉中的最佳旅游季节。</p>
+            </div>
+          </div>
+          
+          <!-- FAQ 项目 3 -->
+          <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-6 text-left focus:outline-none">
+              <span class="text-lg font-medium text-neutral-700">从西安到汉中如何出行最方便？</span>
+              <i class="fa fa-chevron-down text-primary faq-icon"></i>
+            </button>
+            <div class="faq-answer px-6 pb-6">
+              <p class="text-neutral-600">从西安到汉中最方便的出行方式有：</p>
+              <ul class="list-disc pl-5 mt-2 space-y-1">
+                <li>高铁：西安北站到汉中站约1小时20分钟，班次密集，是最快捷的方式</li>
+                <li>自驾：沿京昆高速行驶约3小时，路况良好，适合自由行</li>
+                <li>长途汽车：西安城南客运站有直达汉中的班车，约4小时</li>
+                <li>飞机：西安咸阳国际机场有直飞汉中城固机场的航班，约1小时</li>
+              </ul>
+              <p class="mt-2 text-neutral-600">根据您的时间和预算选择最适合的出行方式。</p>
+            </div>
+          </div>
+          
+          <!-- FAQ 项目 4 -->
+          <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-6 text-left focus:outline-none">
+              <span class="text-lg font-medium text-neutral-700">汉中当地有哪些特色美食？</span>
+              <i class="fa fa-chevron-down text-primary faq-icon"></i>
+            </button>
+            <div class="faq-answer px-6 pb-6">
+              <p class="text-neutral-600">汉中的美食文化丰富多样，以下是一些值得尝试的特色美食：</p>
+              <ul class="list-disc pl-5 mt-2 space-y-1">
+                <li>汉中面皮：以大米为原料，口感软糯，配以辣椒油和调料，非常美味</li>
+                <li>菜豆腐：汉中的传统小吃，豆腐鲜嫩，配以酸菜和辣椒油</li>
+                <li>核桃馍：用核桃和面粉制成，口感酥脆，香甜可口</li>
+                <li>浆水面：以发酵的酸菜水为汤底，配以面条，清爽可口</li>
+                <li>腊肉：汉中的腊肉制作工艺独特，口感醇厚，是当地的特色年货</li>
+              </ul>
+              <p class="mt-2 text-neutral-600">此外，汉中还有许多其他美食，如麻辣鸡、罐罐茶等，等待您来品尝。</p>
+            </div>
+          </div>
+          
+          <!-- FAQ 项目 5 -->
+          <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-6 text-left focus:outline-none">
+              <span class="text-lg font-medium text-neutral-700">汉中的住宿条件如何？有哪些推荐的酒店？</span>
+              <i class="fa fa-chevron-down text-primary faq-icon"></i>
+            </button>
+            <div class="faq-answer px-6 pb-6">
+              <p class="text-neutral-600">汉中的住宿条件较为完善，从高档酒店到经济型酒店和民宿都有：</p>
+              <ul class="list-disc pl-5 mt-2 space-y-1">
+                <li>高档酒店：如汉中天汉景逸大酒店、汉中滨江假日皇冠酒店等，设施齐全，服务优质</li>
+                <li>中档酒店：如汉中东原酒店、汉中天汉长街酒店等，性价比高</li>
+                <li>经济型酒店：如汉庭、如家、7天等连锁酒店，价格实惠，位置便利</li>
+                <li>民宿：在兴汉胜境、诸葛古镇等景区周边有许多特色民宿，可以体验当地文化</li>
+              </ul>
+              <p class="mt-2 text-neutral-600">您可以根据自己的预算和需求选择合适的住宿地点。</p>
+            </div>
+          </div>
+          
+          <!-- FAQ 项目 6 -->
+          <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-6 text-left focus:outline-none">
+              <span class="text-lg font-medium text-neutral-700">汉中的交通情况如何？市内有哪些交通工具？</span>
+              <i class="fa fa-chevron-down text-primary faq-icon"></i>
+            </button>
+            <div class="faq-answer px-6 pb-6">
+              <p class="text-neutral-600">汉中市内的交通较为便利，主要交通工具有：</p>
+              <ul class="list-disc pl-5 mt-2 space-y-1">
+                <li>公交车：汉中市区有多条公交线路，覆盖了主要景点和商业区，票价1-2元</li>
+                <li>出租车：汉中的出租车起步价为6元，之后每公里1.5元左右</li>
+                <li>网约车：滴滴等网约车平台在汉中也很方便</li>
+                <li>共享单车：市区内有共享单车可供使用，适合短途出行</li>
+              </ul>
+              <p class="mt-2 text-neutral-600">如果您要前往周边景点，建议包车或参加旅行团，这样更加方便。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 订阅区域 -->
+  <section class="py-16 bg-primary relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-0 left-0 w-full h-full bg-[url('https://picsum.photos/id/466/1920/1080')] bg-cover bg-center"></div>
+    </div>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">订阅我们的新闻资讯</h2>
+        <p class="text-white/80 mb-8">及时获取汉中旅游的最新信息、活动预告和优惠信息</p>
+        
+        <form class="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
+          <input type="email" placeholder="请输入您的邮箱地址" class="flex-1 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/50">
+          <button type="submit" class="px-6 py-3 bg-white text-primary font-medium rounded-lg hover:bg-white/90 transition-colors">
+            订阅
+          </button>
+        </form>
+        
+        <p class="text-white/60 text-sm mt-4">我们尊重您的隐私，绝不会向第三方分享您的信息</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="bg-neutral-800 text-white pt-16 pb-8">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div>
+          <div class="flex items-center space-x-2 mb-6">
+            <i class="fa fa-map-marker text-primary text-2xl"></i>
+            <span class="text-xl font-bold">汉中旅游网</span>
+          </div>
+          <p class="text-neutral-400 mb-6">探索汉文化之源，领略自然之美。汉中旅游网为您提供全面的旅游信息和专业的旅游服务。</p>
+          <p class="text-neutral-400 mb-6">汉中是一部镌刻在山河间的壮丽史诗，每一条青石板路，都藏着说不完的故事，连空气中都弥漫着厚重的文化醇香。</p>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-semibold mb-6">快速链接</h3>
+          <ul class="space-y-3">
+            <li><a href="index.html" class="text-neutral-400 hover:text-primary transition-colors">首页</a></li>
+            <li><a href="scenic_spots.html" class="text-neutral-400 hover:text-primary transition-colors">景点介绍</a></li>
+            <li><a href="travel_routes.html" class="text-neutral-400 hover:text-primary transition-colors">旅游线路</a></li>
+            <li><a href="travel_tips.html" class="text-neutral-400 hover:text-primary transition-colors">旅游攻略</a></li>
+            <li><a href="food_recommendation.html" class="text-neutral-400 hover:text-primary transition-colors">美食推荐</a></li>
+            <li><a href="han_culture.html" class="text-neutral-400 hover:text-primary transition-colors">汉文化活动</a></li>
+            <li><a href="contact_us.html" class="text-neutral-400 hover:text-primary transition-colors">联系我们</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-semibold mb-6">联系方式</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <i class="fa fa-map-marker text-primary mt-1 mr-3"></i>
+              <span class="text-neutral-400">陕西省汉中市汉台区东一环路陕西理工大学</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fa fa-phone text-primary mr-3"></i>
+              <span class="text-neutral-400">123456789</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fa fa-envelope text-primary mr-3"></i>
+              <span class="text-neutral-400">info@123456.com</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fa fa-clock-o text-primary mr-3"></i>
+              <span class="text-neutral-400">周一至周日 9:00-18:00</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-semibold mb-6">大美汉中欢迎您</h3>
+          <p class="text-neutral-400 mb-4">随时随地获取汉中旅游信息，预订景点门票和旅游线路</p>
+          <div class="mt-6">
+            <img src="images/index/二维码.png" alt="微信公众号" class="w-24 h-24 rounded-lg">
+            <p class="text-neutral-400 text-sm mt-2">扫描二维码关注我们</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-t border-neutral-700 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-neutral-500 text-sm mb-4 md:mb-0">© 2025 汉中旅游网 版权所有 | 陕ICP备12345678号</p>
+          <div class="flex space-x-6">
+            <a href="yinsi.html" class="text-neutral-500 text-sm hover:text-primary transition-colors">隐私政策</a>
+            <a href="fuwu.html" class="text-neutral-500 text-sm hover:text-primary transition-colors">服务条款</a>
+            <a href="web_map.html" class="text-neutral-500 text-sm hover:text-primary transition-colors">网站地图</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 返回顶部按钮 -->
+  <button id="back-to-top" class="fixed bottom-6 right-6 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary/90 focus:outline-none">
+    <i class="fa fa-chevron-up"></i>
+  </button>
+
+  <!-- JavaScript -->
+  <script>
+    // 导航栏滚动效果
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      const backToTop = document.getElementById('back-to-top');
+      
+      if (window.scrollY > 50) {
+        navbar.classList.add('shadow-md');
+        navbar.classList.remove('bg-white/90');
+        navbar.classList.add('bg-white');
+        
+        backToTop.classList.remove('opacity-0', 'invisible');
+        backToTop.classList.add('opacity-100', 'visible');
+      } else {
+        navbar.classList.remove('shadow-md');
+        navbar.classList.add('bg-white/90');
+        navbar.classList.remove('bg-white');
+        
+        backToTop.classList.add('opacity-0', 'invisible');
+        backToTop.classList.remove('opacity-100', 'visible');
+      }
+    });
+    
+    // 移动端菜单
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuButton.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+      if (mobileMenu.classList.contains('hidden')) {
+        mobileMenuButton.innerHTML = '<i class="fa fa-bars text-xl"></i>';
+      } else {
+        mobileMenuButton.innerHTML = '<i class="fa fa-times text-xl"></i>';
+      }
+    });
+    
+    // 返回顶部
+    document.getElementById('back-to-top').addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // FAQ 折叠效果
+    const faqToggles = document.querySelectorAll('.faq-toggle');
+    
+    faqToggles.forEach(toggle => {
+      toggle.addEventListener('click', function() {
+        const answer = this.nextElementSibling;
+        const icon = this.querySelector('.faq-icon');
+        
+        answer.classList.toggle('active');
+        icon.classList.toggle('active');
+      });
+    });
+    
+    // 联系表单提交
+    const contactForm = document.getElementById('contact-form');
+    
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // 这里可以添加表单验证和提交逻辑
+      alert('感谢您的留言！我们会尽快回复您。');
+      contactForm.reset();
+    });
+    
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>    

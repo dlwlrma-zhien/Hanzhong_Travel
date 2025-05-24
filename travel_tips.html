@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>旅游攻略 - 汉中旅游网</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#165DFF',
+            secondary: '#4CAF50',
+            accent: '#FF7043',
+            neutral: {
+              100: '#F5F7FA',
+              200: '#E4E7ED',
+              300: '#C0C6CF',
+              400: '#909399',
+              500: '#606266',
+              600: '#303133',
+              700: '#1E1E1E',
+            }
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .text-shadow-lg {
+        text-shadow: 0 4px 8px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+      }
+      .transition-custom {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .hover-scale {
+        transition: transform 0.3s ease;
+      }
+      .hover-scale:hover {
+        transform: scale(1.03);
+      }
+    }
+  </style>
+</head>
+<body class="font-inter bg-neutral-100 text-neutral-600">
+  <!-- 导航栏 -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center space-x-2">
+          <i class="fa fa-map-marker text-primary text-2xl"></i>
+          <span class="text-xl font-bold text-primary">汉中旅游网</span>
+        </a>
+        
+        <!-- 桌面导航 -->
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="text-neutral-600 hover:text-primary font-medium">首页</a>
+          <a href="scenic_spots.html" class="text-neutral-600 hover:text-primary font-medium">景点介绍</a>
+          <a href="travel_routes.html" class="text-neutral-600 hover:text-primary font-medium">旅游线路</a>
+          <a href="travel_tips.html" class="text-primary font-medium">旅游攻略</a>
+          <a href="food_recommendation.html" class="text-neutral-600 hover:text-primary font-medium">美食推荐</a>
+          <a href="han_culture.html" class="text-neutral-600 hover:text-primary font-medium">汉文化活动</a>
+          <a href="contact_us.html" class="text-neutral-600 hover:text-primary font-medium">联系我们</a>
+        </nav>
+        
+        <!-- 用户操作区 -->
+        <div class="flex items-center space-x-4">
+          <a href="login.html" class="hidden sm:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90 transition-colors">
+            <i class="fa fa-user-circle mr-2"></i>登录/注册
+          </a>
+          
+          <!-- 移动端菜单按钮 -->
+          <button id="mobile-menu-button" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-neutral-600 hover:text-primary hover:bg-neutral-100 focus:outline-none">
+            <i class="fa fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 移动端导航菜单 -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">首页</a>
+        <a href="scenic_spots.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">景点介绍</a>
+        <a href="travel_routes.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">旅游线路</a>
+        <a href="travel_tips.html" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-primary">旅游攻略</a>
+        <a href="food_recommendation.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">美食推荐</a>
+        <a href="han_culture.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">汉文化活动</a>
+        <a href="contact_us.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">联系我们</a>
+        <a href="login.html" class="block px-3 py-2 mt-4 rounded-md text-base font-medium text-white bg-primary hover:bg-primary/90 text-center">
+          <i class="fa fa-user-circle mr-2"></i>登录/注册
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 页面标题区域 -->
+  <section class="pt-16 sm:pt-20 pb-8 bg-primary/5">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-neutral-700 mb-2">旅游攻略</h1>
+        <div class="flex items-center justify-center text-neutral-500 mb-4">
+          <a href="index.html" class="hover:text-primary transition-colors">首页</a>
+          <i class="fa fa-chevron-right mx-2 text-xs"></i>
+          <span class="text-primary">旅游攻略</span>
+        </div>
+        <p class="text-neutral-600 max-w-2xl mx-auto">提供全面的汉中旅游指南，助您规划完美旅程</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 攻略分类导航 -->
+  <section class="py-8 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#best-time" class="px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors">最佳时间</a>
+        <a href="#how-to-get" class="px-6 py-3 bg-neutral-200 text-neutral-700 font-medium rounded-lg hover:bg-neutral-300 transition-colors">交通指南</a>
+        <a href="#accommodation" class="px-6 py-3 bg-neutral-200 text-neutral-700 font-medium rounded-lg hover:bg-neutral-300 transition-colors">住宿推荐</a>
+        <a href="#safety" class="px-6 py-3 bg-neutral-200 text-neutral-700 font-medium rounded-lg hover:bg-neutral-300 transition-colors">安全提示</a>
+        <a href="#local-customs" class="px-6 py-3 bg-neutral-200 text-neutral-700 font-medium rounded-lg hover:bg-neutral-300 transition-colors">当地习俗</a>
+        <a href="#faq" class="px-6 py-3 bg-neutral-200 text-neutral-700 font-medium rounded-lg hover:bg-neutral-300 transition-colors">常见问题</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 攻略内容 -->
+  <section class="py-12 bg-neutral-100">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- 最佳旅游时间 -->
+      <div id="best-time" class="mb-16 bg-white rounded-xl shadow-md overflow-hidden">
+        <div class="relative h-64 sm:h-80">
+          <img src="images/index/汉中四季风光.jpeg" alt="汉中四季风光" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+            <div class="p-6 sm:p-8">
+              <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2">最佳旅游时间</h2>
+              <p class="text-white/80">了解汉中四季气候，选择最适合您的出行时间</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 sm:p-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-xl font-bold text-neutral-700 mb-4">春季 (3-5月)</h3>
+              <p class="text-neutral-600 mb-4">春季是汉中旅游的黄金季节之一，气温宜人，百花盛开。特别是油菜花盛开的3-4月，汉中盆地的百万亩油菜花田构成了一片金色的海洋，是摄影爱好者的天堂。</p>
+              <div class="bg-neutral-50 p-4 rounded-lg">
+                <h4 class="font-medium text-neutral-700 mb-2">春季小贴士</h4>
+                <ul class="space-y-2 text-neutral-600">
+                  <li class="flex items-start">
+                    <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                    <span>3月中下旬至4月中旬是油菜花最佳观赏期</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                    <span>春季昼夜温差较大，建议携带薄外套</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                    <span>此时游客较多，建议提前预订住宿</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold text-neutral-700 mb-4">夏季 (6-8月)</h3>
+              <p class="text-neutral-600 mb-4">夏季的汉中气候较为炎热，但山区气温凉爽，是避暑的好去处。可以前往黎坪国家森林公园、华阳景区等自然景区，享受清凉的山水风光。</p>
+              <div class="bg-neutral-50 p-4 rounded-lg">
+                <h4 class="font-medium text-neutral-700 mb-2">夏季小贴士</h4>
+                <ul class="space-y-2 text-neutral-600">
+                  <li class="flex items-start">
+                    <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                    <span>夏季多雨，随身携带雨具</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                    <span>山区蚊虫较多，准备防蚊用品</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                    <span>注意防晒，准备防晒霜、太阳帽等</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold text-neutral-700 mb-4">秋季 (9-11月)</h3>
+              <p class="text-neutral-600 mb-4">秋季是汉中的第二个旅游旺季，天气晴朗，温度适宜，是观赏红叶和登山的好时机。龙头山、黎坪等地的红叶景观十分壮观，吸引了众多游客。</p>
+              <div class="bg-neutral-50 p-4 rounded-lg">
+                <h4 class="font-medium text-neutral-700 mb-2">秋季小贴士</h4>
+                <ul class="space-y-2 text-neutral-600">
+                  <li class="flex items-start">
+                    <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                    <span>10月下旬至11月中旬是红叶最佳观赏期</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                    <span>早晚温差较大，注意保暖</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                    <span>可以品尝当地的秋季特色美食，如柿子、板栗等</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold text-neutral-700 mb-4">冬季 (12-2月)</h3>
+              <p class="text-neutral-600 mb-4">冬季的汉中气温较低，但可以体验独特的冬季景观，如龙头山的雪景等。此外，冬季也是品尝汉中特色美食的好时机，如汉中面皮、菜豆腐等。</p>
+              <div class="bg-neutral-50 p-4 rounded-lg">
+                <h4 class="font-medium text-neutral-700 mb-2">冬季小贴士</h4>
+                <ul class="space-y-2 text-neutral-600">
+                  <li class="flex items-start">
+                    <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                    <span>冬季气温较低，注意保暖，携带厚衣物</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                    <span>部分山区景点可能因雪天封闭，出行前查询最新信息</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                    <span>冬季是汉中美食的旺季，可以品尝更多特色小吃</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 交通指南 -->
+      <div id="how-to-get" class="mb-16 bg-white rounded-xl shadow-md overflow-hidden">
+        <div class="relative h-64 sm:h-80">
+          <img src="images/index/汉中交通.jpg" alt="汉中交通指南" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+            <div class="p-6 sm:p-8">
+              <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2">交通指南</h2>
+              <p class="text-white/80">多种方式抵达汉中，市内交通便捷</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 sm:p-8">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <h3 class="text-xl font-bold text-neutral-700 mb-4">外部交通</h3>
+              
+              <div class="mb-6">
+                <h4 class="font-bold text-neutral-700 mb-2">飞机</h4>
+                <p class="text-neutral-600 mb-2">汉中城固机场位于城固县，距离市区约17公里，目前已开通至北京、上海、广州、深圳、成都、重庆等国内主要城市的航线。</p>
+                <div class="bg-neutral-50 p-3 rounded-lg">
+                  <p class="text-neutral-600 text-sm"><i class="fa fa-info-circle text-primary mr-2"></i>机场到市区可以乘坐机场大巴、出租车或网约车，车程约30分钟。</p>
+                </div>
+              </div>
+              
+              <div class="mb-6">
+                <h4 class="font-bold text-neutral-700 mb-2">火车</h4>
+                <p class="text-neutral-600 mb-2">汉中火车站位于市区，是宝成铁路和阳安铁路的交汇点，有开往北京、上海、广州、成都、西安等城市的列车。</p>
+                <div class="bg-neutral-50 p-3 rounded-lg">
+                  <p class="text-neutral-600 text-sm"><i class="fa fa-info-circle text-primary mr-2"></i>汉中高铁已开通，从西安乘坐高铁到汉中仅需约1.5小时。</p>
+                </div>
+              </div>
+              
+              <div>
+                <h4 class="font-bold text-neutral-700 mb-2">长途汽车</h4>
+                <p class="text-neutral-600">汉中市有多个长途汽车站，主要有汉中汽车站和汉中高客站，有发往周边城市和省内各地的班车。</p>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold text-neutral-700 mb-4">市内交通</h3>
+              
+              <div class="mb-6">
+                <h4 class="font-bold text-neutral-700 mb-2">公交车</h4>
+                <p class="text-neutral-600 mb-2">汉中市内公交线路覆盖较广，基本可以到达市内各主要景点和商业区。公交车票价一般为1-2元。</p>
+                <div class="bg-neutral-50 p-3 rounded-lg">
+                  <p class="text-neutral-600 text-sm"><i class="fa fa-info-circle text-primary mr-2"></i>部分旅游专线公交车可直达主要景区，如到石门栈道、武侯祠等景点。</p>
+                </div>
+              </div>
+              
+              <div class="mb-6">
+                <h4 class="font-bold text-neutral-700 mb-2">出租车</h4>
+                <p class="text-neutral-600 mb-2">汉中出租车起步价为6元/3公里，之后每公里1.5元。夜间（22:00-次日6:00）起步价为7元/3公里。</p>
+                <div class="bg-neutral-50 p-3 rounded-lg">
+                  <p class="text-neutral-600 text-sm"><i class="fa fa-info-circle text-primary mr-2"></i>出租车在市区内出行较为方便，但前往偏远景区建议提前议价或使用网约车。</p>
+                </div>
+              </div>
+              
+              <div>
+                <h4 class="font-bold text-neutral-700 mb-2">网约车</h4>
+                <p class="text-neutral-600">汉中市内网约车服务较为普及，可通过主流网约车平台叫车，价格相对透明，出行更加便捷。</p>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold text-neutral-700 mb-4">景区交通</h3>
+              
+              <div class="mb-6">
+                <h4 class="font-bold text-neutral-700 mb-2">景区直通车</h4>
+                <p class="text-neutral-600 mb-2">汉中部分主要景区提供景区直通车服务，可在市区指定地点乘坐直达景区的班车，方便快捷。</p>
+                <div class="bg-neutral-50 p-3 rounded-lg">
+                  <p class="text-neutral-600 text-sm"><i class="fa fa-info-circle text-primary mr-2"></i>常见的景区直通车包括到石门栈道、武侯祠、青木川古镇等景区的专线。</p>
+                </div>
+              </div>
+              
+              <div class="mb-6">
+                <h4 class="font-bold text-neutral-700 mb-2">包车</h4>
+                <p class="text-neutral-600 mb-2">对于多人出行或前往偏远景区，包车是一个不错的选择。可以通过旅行社或当地包车服务平台预订车辆。</p>
+                <div class="bg-neutral-50 p-3 rounded-lg">
+                  <p class="text-neutral-600 text-sm"><i class="fa fa-info-circle text-primary mr-2"></i>包车价格根据车型和行程长短而定，一般一天的费用在300-800元左右。</p>
+                </div>
+              </div>
+              
+              <div>
+                <h4 class="font-bold text-neutral-700 mb-2">自驾</h4>
+                <p class="text-neutral-600">汉中的公路交通比较发达，适合自驾游览。可以在市区租车，然后自驾前往各景区，自由度更高。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 住宿推荐 -->
+      <div id="accommodation" class="mb-16 bg-white rounded-xl shadow-md overflow-hidden">
+        <div class="relative h-64 sm:h-80">
+          <img src="images/index/汉中住宿.jpg" alt="汉中住宿推荐" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+            <div class="p-6 sm:p-8">
+              <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2">住宿推荐</h2>
+              <p class="text-white/80">从豪华酒店到特色民宿，满足不同需求</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 sm:p-8">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <h3 class="text-xl font-bold text-neutral-700 mb-4">市区酒店</h3>
+              <p class="text-neutral-600 mb-4">汉中市区有各种档次的酒店可供选择，设施完善，交通便利，适合作为旅游的大本营。</p>
+              
+              <div class="space-y-4">
+                <div class="bg-neutral-50 p-4 rounded-lg hover:shadow-md transition-shadow">
+                  <h4 class="font-bold text-neutral-700 mb-1">汉中天汉景逸大酒店</h4>
+                  <div class="flex items-center text-accent text-sm mb-2">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <span class="ml-2">4.8分</span>
+                  </div>
+                  <p class="text-neutral-600 text-sm mb-2">位于市中心，交通便利，设施豪华，服务周到。</p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-accent font-bold">¥480起</span>
+                    <a href="http://hotel484812.round-world-trip.com/" class="text-primary text-sm hover:underline">查看详情</a>
+                  </div>
+                </div>
+                
+                <div class="bg-neutral-50 p-4 rounded-lg hover:shadow-md transition-shadow">
+                  <h4 class="font-bold text-neutral-700 mb-1">汉中秦禾大酒店</h4>
+                  <div class="flex items-center text-accent text-sm mb-2">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                    <span class="ml-2">4.6分</span>
+                  </div>
+                  <p class="text-neutral-600 text-sm mb-2">靠近火车站，位置优越，房间舒适，性价比高。</p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-accent font-bold">¥320起</span>
+                    <a href="https://hotels.ctrip.com/hotels/1476749.html" class="text-primary text-sm hover:underline">查看详情</a>
+                  </div>
+                </div>
+                
+                <div class="bg-neutral-50 p-4 rounded-lg hover:shadow-md transition-shadow">
+                  <h4 class="font-bold text-neutral-700 mb-1">汉中世纪阳光大酒店</h4>
+                  <div class="flex items-center text-accent text-sm mb-2">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                    <span class="ml-2">4.7分</span>
+                  </div>
+                  <p class="text-neutral-600 text-sm mb-2">位于商业区，周边餐饮购物方便，服务优质。</p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-accent font-bold">¥380起</span>
+                    <a href="https://www.ctrip.com/" class="text-primary text-sm hover:underline">查看详情</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold text-neutral-700 mb-4">景区度假村</h3>
+              <p class="text-neutral-600 mb-4">如果想更贴近自然，可以选择住在景区附近的度假村，享受宁静的环境和独特的体验。</p>
+              
+              <div class="space-y-4">
+                <div class="bg-neutral-50 p-4 rounded-lg hover:shadow-md transition-shadow">
+                  <h4 class="font-bold text-neutral-700 mb-1">石门栈道度假酒店</h4>
+                  <div class="flex items-center text-accent text-sm mb-2">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                    <span class="ml-2">4.5分</span>
+                  </div>
+                  <p class="text-neutral-600 text-sm mb-2">位于石门栈道景区内，环境优美，可欣赏汉江风光。</p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-accent font-bold">¥420起</span>
+                    <a href="https://hotels.ctrip.com/hotel/hanzhong129/sl4203307" class="text-primary text-sm hover:underline">查看详情</a>
+                  </div>
+                </div>
+                
+                <div class="bg-neutral-50 p-4 rounded-lg hover:shadow-md transition-shadow">
+                  <h4 class="font-bold text-neutral-700 mb-1">黎坪森林度假酒店</h4>
+                  <div class="flex items-center text-accent text-sm mb-2">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                    <span class="ml-2">4.7分</span>
+                  </div>
+                  <p class="text-neutral-600 text-sm mb-2">地处黎坪国家森林公园内，森林覆盖率高，空气清新。</p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-accent font-bold">¥520起</span>
+                    <a href="https://hotels.ctrip.com/hotels/19600580.html" class="text-primary text-sm hover:underline">查看详情</a>
+                  </div>
+                </div>
+                
+                <div class="bg-neutral-50 p-4 rounded-lg hover:shadow-md transition-shadow">
+                  <h4 class="font-bold text-neutral-700 mb-1">青木川古镇客栈</h4>
+                  <div class="flex items-center text-accent text-sm mb-2">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                    <span class="ml-2">4.6分</span>
+                  </div>
+                  <p class="text-neutral-600 text-sm mb-2">位于青木川古镇内，古色古香的建筑风格，体验当地文化。</p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-accent font-bold">¥350起</span>
+                    <a href="https://hotels.ctrip.com/hotels/1351074.html" class="text-primary text-sm hover:underline">查看详情</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold text-neutral-700 mb-4">特色民宿</h3>
+              <p class="text-neutral-600 mb-4">民宿是体验当地文化的好选择，汉中的民宿各具特色，服务热情周到。</p>
+              
+              <div class="space-y-4">
+                <div class="bg-neutral-50 p-4 rounded-lg hover:shadow-md transition-shadow">
+                  <h4 class="font-bold text-neutral-700 mb-1">汉风庭院民宿</h4>
+                  <div class="flex items-center text-accent text-sm mb-2">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <span class="ml-2">4.9分</span>
+                  </div>
+                  <p class="text-neutral-600 text-sm mb-2">以汉文化为主题的民宿，装修典雅，服务贴心，提供汉服体验。</p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-accent font-bold">¥390起</span>
+                    <a href="https://hotels.ctrip.com/hotels/109919540.html" class="text-primary text-sm hover:underline">查看详情</a>
+                  </div>
+                </div>
+                
+                <div class="bg-neutral-50 p-4 rounded-lg hover:shadow-md transition-shadow">
+                  <h4 class="font-bold text-neutral-700 mb-1">山水间民宿</h4>
+                  <div class="flex items-center text-accent text-sm mb-2">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                    <span class="ml-2">4.7分</span>
+                  </div>
+                  <p class="text-neutral-600 text-sm mb-2">位于山水之间，环境清幽，提供农家美食和户外活动。</p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-accent font-bold">¥320起</span>
+                    <a href="https://hotels.ctrip.com/hotels/21800309.html" class="text-primary text-sm hover:underline">查看详情</a>
+                  </div>
+                </div>
+                
+                <div class="bg-neutral-50 p-4 rounded-lg hover:shadow-md transition-shadow">
+                  <h4 class="font-bold text-neutral-700 mb-1">茶园民宿</h4>
+                  <div class="flex items-center text-accent text-sm mb-2">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                    <span class="ml-2">4.6分</span>
+                  </div>
+                  <p class="text-neutral-600 text-sm mb-2">周边环绕茶园，可以体验采茶、制茶等活动，感受茶文化。</p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-accent font-bold">¥280起</span>
+                    <a href="https://you.ctrip.com/travels/qingyuan517/4062837.html" class="text-primary text-sm hover:underline">查看详情</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-8 text-center">
+            <a href="#" class="inline-flex items-center px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors">
+              查看更多住宿
+              <i class="fa fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 安全提示 -->
+      <div id="safety" class="mb-16 bg-white rounded-xl shadow-md overflow-hidden">
+        <div class="relative h-64 sm:h-80">
+          <img src="images/index/风光旅游安全.jpg" alt="汉中旅游安全提示" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+            <div class="p-6 sm:p-8">
+              <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2">安全提示</h2>
+              <p class="text-white/80">旅行安全须知，确保您的旅程顺利愉快</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 sm:p-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-xl font-bold text-neutral-700 mb-4">一般安全</h3>
+              <ul class="space-y-4">
+                <li class="bg-neutral-50 p-4 rounded-lg">
+                  <div class="flex items-start">
+                    <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                      <i class="fa fa-info-circle"></i>
+                    </div>
+                    <div class="ml-4">
+                      <h4 class="font-medium text-neutral-700">保管好个人财物</h4>
+                      <p class="text-neutral-600 text-sm mt-1">在人多拥挤的地方，如火车站、景点等，要特别注意保管好个人财物，防止被盗。</p>
+                    </div>
+                  </div>
+                </li>
+                
+                <li class="bg-neutral-50 p-4 rounded-lg">
+                  <div class="flex items-start">
+                    <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                      <i class="fa fa-info-circle"></i>
+                    </div>
+                    <div class="ml-4">
+                      <h4 class="font-medium text-neutral-700">遵守交通规则</h4>
+                      <p class="text-neutral-600 text-sm mt-1">汉中市内交通状况良好，但在过马路时仍需注意交通信号，遵守交通规则。</p>
+                    </div>
+                  </div>
+                </li>
+                
+                <li class="bg-neutral-50 p-4 rounded-lg">
+                  <div class="flex items-start">
+                    <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                      <i class="fa fa-info-circle"></i>
+                    </div>
+                    <div class="ml-4">
+                      <h4 class="font-medium text-neutral-700">注意饮食卫生</h4>
+                      <p class="text-neutral-600 text-sm mt-1">品尝当地美食时，选择正规餐厅和摊位，避免食用生冷食物，以防肠胃不适。</p>
+                    </div>
+                  </div>
+                </li>
+                
+                <li class="bg-neutral-50 p-4 rounded-lg">
+                  <div class="flex items-start">
+                    <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                      <i class="fa fa-info-circle"></i>
+                    </div>
+                    <div class="ml-4">
+                      <h4 class="font-medium text-neutral-700">购买正规门票</h4>
+                      <p class="text-neutral-600 text-sm mt-1">参观景区时，通过正规渠道购买门票，避免购买黄牛票，以免遭受欺诈。</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold text-neutral-700 mb-4">景区安全</h3>
+              <ul class="space-y-4">
+                <li class="bg-neutral-50 p-4 rounded-lg">
+                  <div class="flex items-start">
+                    <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                      <i class="fa fa-info-circle"></i>
+                    </div>
+                    <div class="ml-4">
+                      <h4 class="font-medium text-neutral-700">遵循景区指引</h4>
+                      <p class="text-neutral-600 text-sm mt-1">在景区内游览时，遵循景区的指示牌和工作人员的指引，不要擅自进入未开放区域。</p>
+                    </div>
+                  </div>
+                </li>
+                
+                <li class="bg-neutral-50 p-4 rounded-lg">
+                  <div class="flex items-start">
+                    <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                      <i class="fa fa-info-circle"></i>
+                    </div>
+                    <div class="ml-4">
+                      <h4 class="font-medium text-neutral-700">注意天气变化</h4>
+                      <p class="text-neutral-600 text-sm mt-1">山区天气多变，出行前查看天气预报，携带合适的衣物和雨具，遇到恶劣天气及时避险。</p>
+                    </div>
+                  </div>
+                </li>
+                
+                <li class="bg-neutral-50 p-4 rounded-lg">
+                  <div class="flex items-start">
+                    <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                      <i class="fa fa-info-circle"></i>
+                    </div>
+                    <div class="ml-4">
+                      <h4 class="font-medium text-neutral-700">量力而行</h4>
+                      <p class="text-neutral-600 text-sm mt-1">进行登山等户外活动时，要根据自己的身体状况量力而行，不要过度疲劳，避免发生意外。</p>
+                    </div>
+                  </div>
+                </li>
+                
+                <li class="bg-neutral-50 p-4 rounded-lg">
+                  <div class="flex items-start">
+                    <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                      <i class="fa fa-info-circle"></i>
+                    </div>
+                    <div class="ml-4">
+                      <h4 class="font-medium text-neutral-700">做好防晒防蚊</h4>
+                      <p class="text-neutral-600 text-sm mt-1">夏季户外活动时，做好防晒措施，同时准备防蚊用品，特别是在山区和湿地等区域。</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="mt-8 bg-primary/5 p-6 rounded-lg">
+            <h3 class="text-lg font-bold text-neutral-700 mb-4">紧急联系方式</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <div class="bg-white p-4 rounded-lg">
+                <h4 class="font-medium text-neutral-700 mb-2">汉中市旅游投诉电话</h4>
+                <p class="text-primary font-bold">0916-12301</p>
+              </div>
+              
+              <div class="bg-white p-4 rounded-lg">
+                <h4 class="font-medium text-neutral-700 mb-2">汉中市急救中心</h4>
+                <p class="text-primary font-bold">0916-120</p>
+              </div>
+              
+              <div class="bg-white p-4 rounded-lg">
+                <h4 class="font-medium text-neutral-700 mb-2">汉中市公安局</h4>
+                <p class="text-primary font-bold">0916-110</p>
+              </div>
+              
+              <div class="bg-white p-4 rounded-lg">
+                <h4 class="font-medium text-neutral-700 mb-2">汉中市火警电话</h4>
+                <p class="text-primary font-bold">0916-119</p>
+              </div>
+              
+              <div class="bg-white p-4 rounded-lg">
+                <h4 class="font-medium text-neutral-700 mb-2">汉中市交通事故报警</h4>
+                <p class="text-primary font-bold">0916-122</p>
+              </div>
+              
+              <div class="bg-white p-4 rounded-lg">
+                <h4 class="font-medium text-neutral-700 mb-2">汉中市旅游服务热线</h4>
+                <p class="text-primary font-bold">0916-12345</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 当地习俗 -->
+      <div id="local-customs" class="mb-16 bg-white rounded-xl shadow-md overflow-hidden">
+        <div class="relative h-64 sm:h-80">
+          <img src="images/index/汉中习俗.jpg" alt="汉中当地习俗" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+            <div class="p-6 sm:p-8">
+              <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2">当地习俗</h2>
+              <p class="text-white/80">了解汉中文化习俗，体验地道风土人情</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 sm:p-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-xl font-bold text-neutral-700 mb-4">传统节日</h3>
+              
+              <div class="space-y-6">
+                <div class="bg-neutral-50 p-4 rounded-lg">
+                  <h4 class="font-bold text-neutral-700 mb-2">春节</h4>
+                  <p class="text-neutral-600 mb-3">汉中的春节非常热闹，从腊月二十三开始，家家户户就开始准备年货，贴春联、挂灯笼。除夕之夜，全家团聚吃年夜饭，守岁到午夜放鞭炮迎接新年。</p>
+                  <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-white p-3 rounded-lg">
+                      <h5 class="font-medium text-neutral-700 text-sm mb-1">传统活动</h5>
+                      <p class="text-neutral-600 text-sm">舞龙舞狮、庙会、社火表演</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg">
+                      <h5 class="font-medium text-neutral-700 text-sm mb-1">特色美食</h5>
+                      <p class="text-neutral-600 text-sm">饺子、年糕、腊肉</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="bg-neutral-50 p-4 rounded-lg">
+                  <h4 class="font-bold text-neutral-700 mb-2">清明节</h4>
+                  <p class="text-neutral-600 mb-3">清明节是汉中重要的传统节日，人们会前往祖坟扫墓，祭拜祖先。此外，还有踏青、放风筝等习俗。</p>
+                  <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-white p-3 rounded-lg">
+                      <h5 class="font-medium text-neutral-700 text-sm mb-1">传统活动</h5>
+                      <p class="text-neutral-600 text-sm">扫墓、踏青、插柳</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg">
+                      <h5 class="font-medium text-neutral-700 text-sm mb-1">特色美食</h5>
+                      <p class="text-neutral-600 text-sm">青团、清明果</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="bg-neutral-50 p-4 rounded-lg">
+                  <h4 class="font-bold text-neutral-700 mb-2">端午节</h4>
+                  <p class="text-neutral-600 mb-3">汉中的端午节有吃粽子、赛龙舟、挂艾草等习俗。汉江流域的赛龙舟活动非常热闹，吸引众多游客前来观看。</p>
+                  <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-white p-3 rounded-lg">
+                      <h5 class="font-medium text-neutral-700 text-sm mb-1">传统活动</h5>
+                      <p class="text-neutral-600 text-sm">赛龙舟、挂艾草、佩香囊</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg">
+                      <h5 class="font-medium text-neutral-700 text-sm mb-1">特色美食</h5>
+                      <p class="text-neutral-600 text-sm">粽子、雄黄酒</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold text-neutral-700 mb-4">文化礼仪</h3>
+              
+              <div class="space-y-6">
+                <div class="bg-neutral-50 p-4 rounded-lg">
+                  <h4 class="font-bold text-neutral-700 mb-2">待客礼仪</h4>
+                  <p class="text-neutral-600 mb-2">汉中人民热情好客，客人到来时，主人会用最好的食物和美酒招待。入座时，长辈和贵客通常坐在上席。</p>
+                  <ul class="text-neutral-600 text-sm space-y-2">
+                    <li class="flex items-start">
+                      <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                      <span>敬茶时，要用双手端茶，表示尊重</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fa fa-check-circle text-secondary mt-1 mr-2">

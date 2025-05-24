@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>汉文化活动 - 汉中旅游网</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#165DFF',
+            secondary: '#4CAF50',
+            accent: '#FF7043',
+            neutral: {
+              100: '#F5F7FA',
+              200: '#E4E7ED',
+              300: '#C0C6CF',
+              400: '#909399',
+              500: '#606266',
+              600: '#303133',
+              700: '#1E1E1E',
+            }
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .text-shadow-lg {
+        text-shadow: 0 4px 8px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+      }
+      .transition-custom {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .hover-scale {
+        transition: transform 0.3s ease;
+      }
+      .hover-scale:hover {
+        transform: scale(1.03);
+      }
+    }
+  </style>
+</head>
+<body class="font-inter bg-neutral-100 text-neutral-600">
+  <!-- 导航栏 -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center space-x-2">
+          <i class="fa fa-map-marker text-primary text-2xl"></i>
+          <span class="text-xl font-bold text-primary">汉中旅游网</span>
+        </a>
+        
+        <!-- 桌面导航 -->
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="text-neutral-600 hover:text-primary font-medium">首页</a>
+          <a href="scenic_spots.html" class="text-neutral-600 hover:text-primary font-medium">景点介绍</a>
+          <a href="travel_routes.html" class="text-neutral-600 hover:text-primary font-medium">旅游线路</a>
+          <a href="travel_tips.html" class="text-neutral-600 hover:text-primary font-medium">旅游攻略</a>
+          <a href="food_recommendation.html" class="text-neutral-600 hover:text-primary font-medium">美食推荐</a>
+          <a href="han_culture.html" class="text-primary font-medium">汉文化活动</a>
+          <a href="contact_us.html" class="text-neutral-600 hover:text-primary font-medium">联系我们</a>
+        </nav>
+        
+        <!-- 用户操作区 -->
+        <div class="flex items-center space-x-4">
+          <a href="login.html" class="hidden sm:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90 transition-colors">
+            <i class="fa fa-user-circle mr-2"></i>登录/注册
+          </a>
+          
+          <!-- 移动端菜单按钮 -->
+          <button id="mobile-menu-button" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-neutral-600 hover:text-primary hover:bg-neutral-100 focus:outline-none">
+            <i class="fa fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 移动端导航菜单 -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">首页</a>
+        <a href="scenic_spots.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">景点介绍</a>
+        <a href="travel_routes.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">旅游线路</a>
+        <a href="travel_tips.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">旅游攻略</a>
+        <a href="food_recommendation.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">美食推荐</a>
+        <a href="han_culture.html" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-primary">汉文化活动</a>
+        <a href="contact_us.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">联系我们</a>
+        <a href="login.html" class="block px-3 py-2 mt-4 rounded-md text-base font-medium text-white bg-primary hover:bg-primary/90 text-center">
+          <i class="fa fa-user-circle mr-2"></i>登录/注册
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 页面标题区域 -->
+  <section class="pt-16 sm:pt-20 pb-8 bg-primary/5">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-neutral-700 mb-2">汉文化活动</h1>
+        <div class="flex items-center justify-center text-neutral-500 mb-4">
+          <a href="index.html" class="hover:text-primary transition-colors">首页</a>
+          <i class="fa fa-chevron-right mx-2 text-xs"></i>
+          <span class="text-primary">汉文化活动</span>
+        </div>
+        <p class="text-neutral-600 max-w-2xl mx-auto">感受千年汉风，体验深厚文化底蕴</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 文化活动分类导航 -->
+  <section class="py-8 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#historical-festivals" class="px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors">历史节庆</a>
+        <a href="#cultural-experiences" class="px-6 py-3 bg-neutral-200 text-neutral-700 font-medium rounded-lg hover:bg-neutral-300 transition-colors">文化体验</a>
+        <a href="#art-performances" class="px-6 py-3 bg-neutral-200 text-neutral-700 font-medium rounded-lg hover:bg-neutral-300 transition-colors">艺术表演</a>
+        <a href="#traditional-ceremonies" class="px-6 py-3 bg-neutral-200 text-neutral-700 font-medium rounded-lg hover:bg-neutral-300 transition-colors">传统仪式</a>
+        <a href="#cultural-exhibitions" class="px-6 py-3 bg-neutral-200 text-neutral-700 font-medium rounded-lg hover:bg-neutral-300 transition-colors">文化展览</a>
+        <a href="#upcoming-events" class="px-6 py-3 bg-neutral-200 text-neutral-700 font-medium rounded-lg hover:bg-neutral-300 transition-colors">近期活动</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 历史节庆 -->
+  <section id="historical-festivals" class="py-12 bg-neutral-100">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-neutral-700 mb-4">历史节庆</h2>
+        <p class="text-neutral-600 max-w-2xl mx-auto">汉中地区历史悠久，保留了许多传统的历史节庆活动</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 诸葛亮文化旅游节 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
+          <div class="relative h-60">
+            <img src="images/han_culture/诸葛亮文化旅游节.jpg" alt="诸葛亮文化旅游节" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end">
+              <div class="p-4 w-full">
+                <div class="flex justify-between items-center">
+                  <span class="text-white font-medium">点击查看详情</span>
+                  <button class="bg-white/20 hover:bg-white/30 p-2 rounded-full text-white transition-colors">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-neutral-700">诸葛亮文化旅游节</h3>
+              <div class="flex items-center">
+                <i class="fa fa-star text-accent"></i>
+                <span class="ml-1 text-accent font-medium">4.9</span>
+              </div>
+            </div>
+            <p class="text-neutral-600 mb-4">每年在诸葛亮诞辰和逝世之日举办，以纪念这位三国时期的杰出政治家和军事家，活动包括祭祀仪式、文艺表演等。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">历史文化</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">春季活动</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">祭祀</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-neutral-700 font-medium">时间：每年4月</span>
+              <a href="http://hzappnews.hanzhongnews.cn/News/Article?ArticleId=700514" class="text-primary hover:underline text-sm font-medium">查看详情 <i class="fa fa-arrow-right ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 张骞文化艺术节 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
+          <div class="relative h-60">
+            <img src="images/han_culture/张骞文化艺术节.jpg" alt="张骞文化艺术节" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end">
+              <div class="p-4 w-full">
+                <div class="flex justify-between items-center">
+                  <span class="text-white font-medium">点击查看详情</span>
+                  <button class="bg-white/20 hover:bg-white/30 p-2 rounded-full text-white transition-colors">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-neutral-700">张骞文化艺术节</h3>
+              <div class="flex items-center">
+                <i class="fa fa-star text-accent"></i>
+                <span class="ml-1 text-accent font-medium">4.8</span>
+              </div>
+            </div>
+            <p class="text-neutral-600 mb-4">以汉中著名历史人物张骞为主题的文化艺术节，展示丝绸之路文化和汉中地方特色文化。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">历史文化</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">秋季活动</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">艺术</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-neutral-700 font-medium">时间：每年9月</span>
+              <a href="http://www.chinaquhua.cn/culture/46/zhangwenhuayishujie.html" class="text-primary hover:underline text-sm font-medium">查看详情 <i class="fa fa-arrow-right ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 汉中油菜花节 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
+          <div class="relative h-60">
+            <img src="images/han_culture/汉中油菜花节.jpg" alt="汉中油菜花节" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end">
+              <div class="p-4 w-full">
+                <div class="flex justify-between items-center">
+                  <span class="text-white font-medium">点击查看详情</span>
+                  <button class="bg-white/20 hover:bg-white/30 p-2 rounded-full text-white transition-colors">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-neutral-700">汉中油菜花节</h3>
+              <div class="flex items-center">
+                <i class="fa fa-star text-accent"></i>
+                <span class="ml-1 text-accent font-medium">4.9</span>
+              </div>
+            </div>
+            <p class="text-neutral-600 mb-4">每年春季举办的油菜花节，以百万亩油菜花田为背景，举办摄影比赛、民俗表演等活动。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">民俗文化</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">春季活动</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">摄影</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-neutral-700 font-medium">时间：每年3-4月</span>
+              <a href="https://xa.bendibao.com/tour/2025227/138510.shtm" class="text-primary hover:underline text-sm font-medium">查看详情 <i class="fa fa-arrow-right ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 文化体验 -->
+  <section id="cultural-experiences" class="py-12 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-neutral-700 mb-4">文化体验</h2>
+        <p class="text-neutral-600 max-w-2xl mx-auto">参与各种汉文化体验活动，深入了解汉中文化的魅力</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- 汉服体验 -->
+        <div class="bg-neutral-50 rounded-xl overflow-hidden hover-scale">
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-2/5 relative h-60 md:h-auto">
+              <img src="images/han_culture/汉服体验.jpg" alt="汉服体验" class="w-full h-full object-cover">
+            </div>
+            <div class="md:w-3/5 p-6">
+              <div class="flex justify-between items-start mb-3">
+                <h3 class="text-xl font-bold text-neutral-700">汉服体验</h3>
+                <div class="flex items-center">
+                  <i class="fa fa-star text-accent"></i>
+                  <span class="ml-1 text-accent font-medium">4.9</span>
+                </div>
+              </div>
+              <p class="text-neutral-600 mb-4">在兴汉胜境景区或诸葛古镇，游客可以租赁汉服，体验古代文人雅士的生活方式，拍照留念。</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">文化体验</span>
+                <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">全天可体验</span>
+                <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">摄影</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-accent font-bold">¥80-200/小时</span>
+                <a href="https://news.qq.com/rain/a/20250421A0802J00" class="text-primary hover:underline text-sm font-medium">预约体验 <i class="fa fa-arrow-right ml-1"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 书法绘画体验 -->
+        <div class="bg-neutral-50 rounded-xl overflow-hidden hover-scale">
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-2/5 relative h-60 md:h-auto">
+              <img src="images/han_culture/书法绘画.jpg" alt="书法绘画体验" class="w-full h-full object-cover">
+            </div>
+            <div class="md:w-3/5 p-6">
+              <div class="flex justify-between items-start mb-3">
+                <h3 class="text-xl font-bold text-neutral-700">书法绘画体验</h3>
+                <div class="flex items-center">
+                  <i class="fa fa-star text-accent"></i>
+                  <span class="ml-1 text-accent font-medium">4.7</span>
+                </div>
+              </div>
+              <p class="text-neutral-600 mb-4">在汉中博物馆或文化中心，有专业的书法老师指导游客体验中国传统书法和绘画艺术。</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">艺术体验</span>
+                <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">全天可体验</span>
+                <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">手工</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-accent font-bold">¥120-280/人</span>
+                <a href="https://shaanxi.china.com/wenlv/20000875/20250418/25958852.html" class="text-primary hover:underline text-sm font-medium">预约体验 <i class="fa fa-arrow-right ml-1"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 传统手工艺体验 -->
+        <div class="bg-neutral-50 rounded-xl overflow-hidden hover-scale">
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-2/5 relative h-60 md:h-auto">
+              <img src="images/han_culture/传统手工艺.jpg" alt="传统手工艺体验" class="w-full h-full object-cover">
+            </div>
+            <div class="md:w-3/5 p-6">
+              <div class="flex justify-between items-start mb-3">
+                <h3 class="text-xl font-bold text-neutral-700">传统手工艺体验</h3>
+                <div class="flex items-center">
+                  <i class="fa fa-star text-accent"></i>
+                  <span class="ml-1 text-accent font-medium">4.8</span>
+                </div>
+              </div>
+              <p class="text-neutral-600 mb-4">在汉中的传统手工艺作坊，游客可以体验剪纸、陶艺、编织等传统手工艺制作过程。</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">文化体验</span>
+                <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">全天可体验</span>
+                <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">手工</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-accent font-bold">¥80-180/人</span>
+                <a href="#" class="text-primary hover:underline text-sm font-medium">预约体验 <i class="fa fa-arrow-right ml-1"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 茶艺品鉴 -->
+        <div class="bg-neutral-50 rounded-xl overflow-hidden hover-scale">
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-2/5 relative h-60 md:h-auto">
+              <img src="images/han_culture/茶艺品鉴.jpg" alt="茶艺品鉴" class="w-full h-full object-cover">
+            </div>
+            <div class="md:w-3/5 p-6">
+              <div class="flex justify-between items-start mb-3">
+                <h3 class="text-xl font-bold text-neutral-700">茶艺品鉴</h3>
+                <div class="flex items-center">
+                  <i class="fa fa-star text-accent"></i>
+                  <span class="ml-1 text-accent font-medium">4.9</span>
+                </div>
+              </div>
+              <p class="text-neutral-600 mb-4">在汉中的茶馆或茶文化中心，游客可以在专业茶艺师的指导下，品鉴汉中名茶，学习茶艺。</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">文化体验</span>
+                <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">全天可体验</span>
+                <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">养生</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-accent font-bold">¥100-260/人</span>
+                <a href="#" class="text-primary hover:underline text-sm font-medium">预约体验 <i class="fa fa-arrow-right ml-1"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 艺术表演 -->
+  <section id="art-performances" class="py-12 bg-neutral-100">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-neutral-700 mb-4">艺术表演</h2>
+        <p class="text-neutral-600 max-w-2xl mx-auto">欣赏具有汉中地方特色的艺术表演，感受传统文化的魅力</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 《汉颂》大型实景演出 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
+          <div class="relative h-60">
+            <img src="images/han_culture/《汉颂》大型实景演出.jpg" alt="《汉颂》大型实景演出" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-neutral-700">《汉颂》大型实景演出</h3>
+              <div class="flex items-center">
+                <i class="fa fa-star text-accent"></i>
+                <span class="ml-1 text-accent font-medium">4.9</span>
+              </div>
+            </div>
+            <p class="text-neutral-600 mb-4">以汉文化为主题的大型实景演出，通过声光电等现代技术，展现汉朝的辉煌历史和文化。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">实景演出</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">晚间演出</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">历史</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-neutral-700 font-medium">地点：兴汉胜境景区</span>
+              <a href="#" class="text-primary hover:underline text-sm font-medium">购票 <i class="fa fa-arrow-right ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 汉调桄桄表演 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
+          <div class="relative h-60">
+            <img src="images/han_culture/汉调桄桄表演.jpg" alt="汉调桄桄表演" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-neutral-700">汉调桄桄表演</h3>
+              <div class="flex items-center">
+                <i class="fa fa-star text-accent"></i>
+                <span class="ml-1 text-accent font-medium">4.8</span>
+              </div>
+            </div>
+            <p class="text-neutral-600 mb-4">汉调桄桄是陕西汉中地区的传统戏曲剧种，被列为国家级非物质文化遗产，表演风格独特。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">传统戏曲</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">定期演出</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">文化</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-neutral-700 font-medium">地点：汉中市汉调桄桄剧团</span>
+              <a href="#" class="text-primary hover:underline text-sm font-medium">购票 <i class="fa fa-arrow-right ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 傩戏表演 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
+          <div class="relative h-60">
+            <img src="images/han_culture/傩戏表演.jpg" alt="傩戏表演" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-neutral-700">傩戏表演</h3>
+              <div class="flex items-center">
+                <i class="fa fa-star text-accent"></i>
+                <span class="ml-1 text-accent font-medium">4.7</span>
+              </div>
+            </div>
+            <p class="text-neutral-600 mb-4">傩戏是中国传统宗教祭祀仪式中的一种戏剧形式，汉中地区的傩戏表演具有浓郁的地方特色。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">传统戏曲</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">节日演出</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">神秘</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-neutral-700 font-medium">地点：宁强县傩文化博物馆</span>
+              <a href="#" class="text-primary hover:underline text-sm font-medium">购票 <i class="fa fa-arrow-right ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 传统仪式 -->
+  <section id="traditional-ceremonies" class="py-12 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-neutral-700 mb-4">传统仪式</h2>
+        <p class="text-neutral-600 max-w-2xl mx-auto">参与和观赏汉中地区的传统仪式，感受传统文化的庄重与神秘</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- 武侯墓祭祀仪式 -->
+        <div class="bg-neutral-50 rounded-xl overflow-hidden hover-scale">
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-2/5 relative h-60 md:h-auto">
+              <img src="images/han_culture/武侯墓祭祀仪式.jpg" alt="武侯墓祭祀仪式" class="w-full h-full object-cover">
+            </div>
+            <div class="md:w-3/5 p-6">
+              <div class="flex justify-between items-start mb-3">
+                <h3 class="text-xl font-bold text-neutral-700">武侯墓祭祀仪式</h3>
+                <div class="flex items-center">
+                  <i class="fa fa-star text-accent"></i>
+                  <span class="ml-1 text-accent font-medium">4.9</span>
+                </div>
+              </div>
+              <p class="text-neutral-600 mb-4">每年清明和诸葛亮忌日，在勉县武侯墓举行隆重的祭祀仪式，以纪念诸葛亮的功绩。</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">祭祀仪式</span>
+                <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">春季/秋季</span>
+                <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">历史</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-neutral-700 font-medium">地点：勉县武侯墓</span>
+                <a href="#" class="text-primary hover:underline text-sm font-medium">查看详情 <i class="fa fa-arrow-right ml-1"></i></a>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 张骞纪念馆祭祀仪式 -->
+        <div class="bg-neutral-50 rounded-xl overflow-hidden hover-scale">
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-2/5 relative h-60 md:h-auto">
+              <img src="images/han_culture/张骞纪念馆祭祀仪式.jpg" alt="张骞纪念馆祭祀仪式" class="w-full h-full object-cover">
+            </div>
+            <div class="md:w-3/5 p-6">
+              <div class="flex justify-between items-start mb-3">
+                <h3 class="text-xl font-bold text-neutral-700">张骞纪念馆祭祀仪式</h3>
+                <div class="flex items-center">
+                  <i class="fa fa-star text-accent"></i>
+                  <span class="ml-1 text-accent font-medium">4.8</span>
+                </div>
+              </div>
+              <p class="text-neutral-600 mb-4">每年在张骞纪念馆举行祭祀仪式，纪念这位开辟丝绸之路的伟大探险家。</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">祭祀仪式</span>
+                <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">春季/秋季</span>
+                <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">历史</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-neutral-700 font-medium">地点：城固县张骞纪念馆</span>
+                <a href="#" class="text-primary hover:underline text-sm font-medium">查看详情 <i class="fa fa-arrow-right ml-1"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 传统婚礼体验 -->
+        <div class="bg-neutral-50 rounded-xl overflow-hidden hover-scale">
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-2/5 relative h-60 md:h-auto">
+              <img src="images/han_culture/传统婚礼体验.jpg" alt="传统婚礼体验" class="w-full h-full object-cover">
+            </div>
+            <div class="md:w-3/5 p-6">
+              <div class="flex justify-between items-start mb-3">
+                <h3 class="text-xl font-bold text-neutral-700">传统婚礼体验</h3>
+                <div class="flex items-center">
+                  <i class="fa fa-star text-accent"></i>
+                  <span class="ml-1 text-accent font-medium">4.7</span>
+                </div>
+              </div>
+              <p class="text-neutral-600 mb-4">在兴汉胜境景区，游客可以体验传统汉式婚礼，感受古代婚礼的庄重与浪漫。</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">文化体验</span>
+                <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">可预约</span>
+                <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">传统</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-accent font-bold">¥1980-5980/对</span>
+                <a href="#" class="text-primary hover:underline text-sm font-medium">预约体验 <i class="fa fa-arrow-right ml-1"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 成人礼体验 -->
+        <div class="bg-neutral-50 rounded-xl overflow-hidden hover-scale">
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-2/5 relative h-60 md:h-auto">
+              <img src="images/han_culture/成人礼体验.jpg" alt="成人礼体验" class="w-full h-full object-cover">
+            </div>
+            <div class="md:w-3/5 p-6">
+              <div class="flex justify-between items-start mb-3">
+                <h3 class="text-xl font-bold text-neutral-700">成人礼体验</h3>
+                <div class="flex items-center">
+                  <i class="fa fa-star text-accent"></i>
+                  <span class="ml-1 text-accent font-medium">4.8</span>
+                </div>
+              </div>
+              <p class="text-neutral-600 mb-4">在汉中的文化中心或景区，游客可以体验传统汉式成人礼，感受传统文化的熏陶。</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">文化体验</span>
+                <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">可预约</span>
+                <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">传统</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-accent font-bold">¥680-1680/人</span>
+                <a href="#" class="text-primary hover:underline text-sm font-medium">预约体验 <i class="fa fa-arrow-right ml-1"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 文化展览 -->
+  <section id="cultural-exhibitions" class="py-12 bg-neutral-100">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-neutral-700 mb-4">文化展览</h2>
+        <p class="text-neutral-600 max-w-2xl mx-auto">参观汉中的各类文化展览，了解汉中的历史文化和艺术成就</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 汉中博物馆 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
+          <div class="relative h-60">
+            <img src="images/han_culture/汉中博物馆.jpg" alt="汉中博物馆" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-neutral-700">汉中博物馆</h3>
+              <div class="flex items-center">
+                <i class="fa fa-star text-accent"></i>
+                <span class="ml-1 text-accent font-medium">4.9</span>
+              </div>
+            </div>
+            <p class="text-neutral-600 mb-4">汉中博物馆是一座综合性博物馆，收藏了大量的历史文物和艺术品，展示了汉中地区的历史文化。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">历史文物</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">常年展览</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">免费</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-neutral-700 font-medium">地址：汉台区东大街</span>
+              <a href="#" class="text-primary hover:underline text-sm font-medium">查看详情 <i class="fa fa-arrow-right ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 张骞纪念馆 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
+          <div class="relative h-60">
+            <img src="images/han_culture/张骞纪念馆.jpg" alt="张骞纪念馆" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-neutral-700">张骞纪念馆</h3>
+              <div class="flex items-center">
+                <i class="fa fa-star text-accent"></i>
+                <span class="ml-1 text-accent font-medium">4.8</span>
+              </div>
+            </div>
+            <p class="text-neutral-600 mb-4">张骞纪念馆以汉代风格建筑为主体，展示了张骞开辟丝绸之路的历史功绩和丝绸之路文化。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">历史人物</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">常年展览</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">收费</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-neutral-700 font-medium">地址：城固县博望镇饶家营村</span>
+              <a href="#" class="text-primary hover:underline text-sm font-medium">查看详情 <i class="fa fa-arrow-right ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 武侯祠博物馆 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
+          <div class="relative h-60">
+            <img src="images/han_culture/武侯祠博物馆.jpg" alt="武侯祠博物馆" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold text-neutral-700">武侯祠博物馆</h3>
+              <div class="flex items-center">
+                <i class="fa fa-star text-accent"></i>
+                <span class="ml-1 text-accent font-medium">4.9</span>
+              </div>
+            </div>
+            <p class="text-neutral-600 mb-4">武侯祠博物馆是为纪念诸葛亮而建，展示了诸葛亮的生平事迹和三国文化。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">历史文化</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">常年展览</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">收费</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-neutral-700 font-medium">地址：勉县武侯镇</span>
+              <a href="#" class="text-primary hover:underline text-sm font-medium">查看详情 <i class="fa fa-arrow-right ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 近期活动 -->
+  <section id="upcoming-events" class="py-12 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-neutral-700 mb-4">近期活动</h2>
+        <p class="text-neutral-600 max-w-2xl mx-auto">汉中近期即将举办的各类汉文化活动，欢迎参与</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 活动卡片 1 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale border border-neutral-200">
+          <div class="relative">
+            <div class="absolute top-4 left-4 bg-accent text-white text-sm font-medium px-3 py-1 rounded-full">
+              即将开始
+            </div>
+            <img src="images/han_culture/2025汉中诸葛亮文化旅游节.jpg" alt="活动图片" class="w-full h-48 object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center text-neutral-500 text-sm mb-2">
+              <i class="fa fa-calendar-alt mr-1"></i>
+              <span>2025年6月15日-6月25日</span>
+            </div>
+            <h3 class="text-xl font-bold text-neutral-700 mb-3">2025汉中诸葛亮文化旅游节</h3>
+            <p class="text-neutral-600 mb-4">在诸葛亮诞辰之日，举办盛大的文化旅游节，包括祭祀仪式、文艺表演、学术研讨等活动。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">历史文化</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">大型活动</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">勉县</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-accent font-bold">免费参与（部分收费）</span>
+              <a href="#" class="px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors">
+                报名参与
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 活动卡片 2 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale border border-neutral-200">
+          <div class="relative">
+            <div class="absolute top-4 left-4 bg-accent text-white text-sm font-medium px-3 py-1 rounded-full">
+              即将开始
+            </div>
+            <img src="images/han_culture/2025汉中市桨板公开赛.jpg" alt="活动图片" class="w-full h-48 object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center text-neutral-500 text-sm mb-2">
+              <i class="fa fa-calendar-alt mr-1"></i>
+              <span>2025年6月6日-6月8日</span>
+            </div>
+            <h3 class="text-xl font-bold text-neutral-700 mb-3">2025汉中市桨板公开赛</h3>
+            <p class="text-neutral-600 mb-4">看水上健儿逐浪竞速！速度与水花齐飞，现场感受竞技的热血沸腾！。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">体育竞速</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">大型活动</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">汉中市</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-accent font-bold">免费参与</span>
+              <a href="#" class="px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors">
+                报名参与
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- 活动卡片 3 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover-scale border border-neutral-200">
+          <div class="relative">
+             <div class="absolute top-4 left-4 bg-accent text-white text-sm font-medium px-3 py-1 rounded-full">
+                即将开始
+              </div>
+              <img src="images/han_culture/礼衣华夏.jpg" alt="活动图片" class="w-full h-48 object-cover">
+            </div>
+            <div class="p-6">
+              <div class="flex items-center text-neutral-500 text-sm mb-2">
+                <i class="fa fa-calendar-alt mr-1"></i>
+                <span>2025年5月31日</span>
+              </div>
+              <h3 class="text-xl font-bold text-neutral-700 mb-3">2025礼衣华夏汉服模特大赛</h3>
+              <p class="text-neutral-600 mb-4">传承华夏文明，彰显服饰之美，以衣为媒，以礼为韵，再现中华服饰的千年风华。</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">历史文化</span>
+                <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">大型活动</span>
+                <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-sm rounded-full">兴汉胜境</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-accent font-bold">免费参与（部分收费）</span>
+                <a href="#" class="px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors">
+                  报名参与
+                </a>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
+              

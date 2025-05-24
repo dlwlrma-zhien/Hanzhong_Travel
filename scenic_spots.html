@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>景点介绍 - 汉中旅游网</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#165DFF',
+            secondary: '#4CAF50',
+            accent: '#FF7043',
+            neutral: {
+              100: '#F5F7FA',
+              200: '#E4E7ED',
+              300: '#C0C6CF',
+              400: '#909399',
+              500: '#606266',
+              600: '#303133',
+              700: '#1E1E1E',
+            }
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .text-shadow-lg {
+        text-shadow: 0 4px 8px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+      }
+      .transition-custom {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .hover-scale {
+        transition: transform 0.3s ease;
+      }
+      .hover-scale:hover {
+        transform: scale(1.03);
+      }
+    }
+  </style>
+</head>
+<body class="font-inter bg-neutral-100 text-neutral-600">
+  <!-- 导航栏 -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center space-x-2">
+          <i class="fa fa-map-marker text-primary text-2xl"></i>
+          <span class="text-xl font-bold text-primary">汉中旅游网</span>
+        </a>
+        
+        <!-- 桌面导航 -->
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="text-neutral-600 hover:text-primary font-medium">首页</a>
+          <div class="relative group">
+            <a href="scenic_spots.html" class="text-primary font-medium flex items-center group-hover:text-primary transition-colors">
+              景点介绍
+              <i class="fa fa-chevron-down ml-1 text-xs transition-transform group-hover:rotate-180"></i>
+            </a>
+            <div class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right scale-95 group-hover:scale-100">
+              <div class="py-1">
+                <a href="#" class="block px-4 py-2 text-sm text-neutral-600 hover:bg-neutral-100 hover:text-primary">自然风光</a>
+                <a href="#" class="block px-4 py-2 text-sm text-neutral-600 hover:bg-neutral-100 hover:text-primary">人文古迹</a>
+                <a href="#" class="block px-4 py-2 text-sm text-neutral-600 hover:bg-neutral-100 hover:text-primary">红色旅游</a>
+              </div>
+            </div>
+          </div>
+          <div class="relative group">
+            <a href="travel_routes.html" class="text-neutral-600 hover:text-primary font-medium flex items-center group-hover:text-primary transition-colors">
+              旅游线路
+              <i class="fa fa-chevron-down ml-1 text-xs transition-transform group-hover:rotate-180"></i>
+            </a>
+            <div class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right scale-95 group-hover:scale-100">
+              <div class="py-1">
+                <a href="#" class="block px-4 py-2 text-sm text-neutral-600 hover:bg-neutral-100 hover:text-primary">一日游</a>
+                <a href="#" class="block px-4 py-2 text-sm text-neutral-600 hover:bg-neutral-100 hover:text-primary">多日游</a>
+                <a href="#" class="block px-4 py-2 text-sm text-neutral-600 hover:bg-neutral-100 hover:text-primary">特色主题游</a>
+              </div>
+            </div>
+          </div>
+          <a href="travel_tips.html" class="text-neutral-600 hover:text-primary font-medium">旅游攻略</a>
+          <a href="food_recommendation.html" class="text-neutral-600 hover:text-primary font-medium">美食推荐</a>
+          <a href="han_culture.html" class="text-neutral-600 hover:text-primary font-medium">汉文化活动</a>
+          <a href="contact_us.html" class="text-neutral-600 hover:text-primary font-medium">联系我们</a>
+        </nav>
+        
+        <!-- 用户操作区 -->
+        <div class="flex items-center space-x-4">
+          <a href="login.html" class="hidden sm:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90 transition-colors">
+            <i class="fa fa-user-circle mr-2"></i>登录/注册
+          </a>
+          
+          <!-- 移动端菜单按钮 -->
+          <button id="mobile-menu-button" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-neutral-600 hover:text-primary hover:bg-neutral-100 focus:outline-none">
+            <i class="fa fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 移动端导航菜单 -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">首页</a>
+        <a href="scenic_spots.html" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-primary">景点介绍</a>
+        <a href="travel_routes.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">旅游线路</a>
+        <a href="travel_tips.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">旅游攻略</a>
+        <a href="food_recommendation.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">美食推荐</a>
+        <a href="han_culture.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">汉文化活动</a>
+        <a href="contact_us.html" class="block px-3 py-2 rounded-md text-base font-medium text-neutral-600 hover:text-primary hover:bg-neutral-100">联系我们</a>
+        <a href="login.html" class="block px-3 py-2 mt-4 rounded-md text-base font-medium text-white bg-primary hover:bg-primary/90 text-center">
+          <i class="fa fa-user-circle mr-2"></i>登录/注册
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 页面标题区域 -->
+  <section class="pt-16 sm:pt-20 pb-8 bg-primary/5">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-neutral-700 mb-2">景点介绍</h1>
+        <div class="flex items-center justify-center text-neutral-500 mb-4">
+          <a href="index.html" class="hover:text-primary transition-colors">首页</a>
+          <i class="fa fa-chevron-right mx-2 text-xs"></i>
+          <span class="text-primary">景点介绍</span>
+        </div>
+        <p class="text-neutral-600 max-w-2xl mx-auto">探索汉中的自然风光与人文景观，感受千年古城的独特魅力</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 景点列表 -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- 筛选区域 -->
+      <div class="mb-10 bg-neutral-50 rounded-xl p-6">
+        <div class="flex flex-col md:flex-row gap-4">
+          <div class="flex-1">
+            <label class="block text-sm font-medium text-neutral-700 mb-2">景点类型</label>
+            <div class="flex flex-wrap gap-2">
+              <button class="px-4 py-2 bg-primary text-white rounded-lg">全部</button>
+              <button class="px-4 py-2 bg-white text-neutral-600 rounded-lg hover:bg-neutral-100 transition-colors">自然风光</button>
+              <button class="px-4 py-2 bg-white text-neutral-600 rounded-lg hover:bg-neutral-100 transition-colors">人文古迹</button>
+              <button class="px-4 py-2 bg-white text-neutral-600 rounded-lg hover:bg-neutral-100 transition-colors">红色旅游</button>
+              <button class="px-4 py-2 bg-white text-neutral-600 rounded-lg hover:bg-neutral-100 transition-colors">民俗文化</button>
+            </div>
+          </div>
+          <div class="flex-1">
+            <label class="block text-sm font-medium text-neutral-700 mb-2">地区</label>
+            <div class="flex flex-wrap gap-2">
+              <button class="px-4 py-2 bg-primary text-white rounded-lg">全部</button>
+              <button class="px-4 py-2 bg-white text-neutral-600 rounded-lg hover:bg-neutral-100 transition-colors">汉台区</button>
+              <button class="px-4 py-2 bg-white text-neutral-600 rounded-lg hover:bg-neutral-100 transition-colors">南郑区</button>
+              <button class="px-4 py-2 bg-white text-neutral-600 rounded-lg hover:bg-neutral-100 transition-colors">城固县</button>
+              <button class="px-4 py-2 bg-white text-neutral-600 rounded-lg hover:bg-neutral-100 transition-colors">洋县</button>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 flex flex-col sm:flex-row gap-4">
+          <div class="flex-1">
+            <label class="block text-sm font-medium text-neutral-700 mb-2">评分</label>
+            <div class="flex flex-wrap gap-2">
+              <button class="px-4 py-2 bg-primary text-white rounded-lg">全部</button>
+              <button class="px-4 py-2 bg-white text-neutral-600 rounded-lg hover:bg-neutral-100 transition-colors">4.5分以上</button>
+              <button class="px-4 py-2 bg-white text-neutral-600 rounded-lg hover:bg-neutral-100 transition-colors">4分以上</button>
+              <button class="px-4 py-2 bg-white text-neutral-600 rounded-lg hover:bg-neutral-100 transition-colors">3.5分以上</button>
+            </div>
+          </div>
+          <div class="flex-1">
+            <label class="block text-sm font-medium text-neutral-700 mb-2">排序</label>
+            <select class="w-full px-4 py-2 bg-white border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+              <option>推荐优先</option>
+              <option>评分从高到低</option>
+              <option>评分从低到高</option>
+              <option>人气从高到低</option>
+              <option>人气从低到高</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 景点卡片列表 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 景点卡片1 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover-scale">
+          <div class="relative h-56 overflow-hidden">
+            <img src="images/index/石门栈道.jpg" alt="石门栈道" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+            <div class="absolute top-4 left-4 bg-primary text-white text-sm font-medium px-3 py-1 rounded-full">
+              自然风光
+            </div>
+            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-accent text-sm font-medium px-3 py-1 rounded-full flex items-center">
+              <i class="fa fa-star mr-1"></i> 4.8
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-neutral-700 mb-2">石门栈道</h3>
+            <p class="text-neutral-600 mb-4">中国历史上最早的人工交通隧道之一，被誉为"世界第九大奇迹"，集自然景观与历史文化于一体。</p>
+            <div class="flex items-center text-neutral-500 text-sm mb-4">
+              <i class="fa fa-map-marker mr-1"></i>
+              <span>汉中市汉台区北15公里处</span>
+            </div>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full">世界遗产</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">自然风光</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-xs rounded-full">历史古迹</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="text-accent text-xl font-bold">¥60</span>
+                <span class="text-neutral-500 text-sm">起</span>
+              </div>
+              <a href="https://baike.baidu.com/item/%E7%9F%B3%E9%97%A8%E6%A0%88%E9%81%93%E9%A3%8E%E6%99%AF%E5%8C%BA/1442732" class="inline-flex items-center px-4 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors">
+                查看详情
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 景点卡片2 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover-scale">
+          <div class="relative h-56 overflow-hidden">
+            <img src="images/index/青木川古镇.jpg" alt="青木川古镇" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+            <div class="absolute top-4 left-4 bg-secondary text-white text-sm font-medium px-3 py-1 rounded-full">
+              人文古迹
+            </div>
+            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-accent text-sm font-medium px-3 py-1 rounded-full flex items-center">
+              <i class="fa fa-star mr-1"></i> 4.7
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-neutral-700 mb-2">青木川古镇</h3>
+            <p class="text-neutral-600 mb-4">保存最完好的明清古建筑群之一，《一代枭雄》的拍摄地，感受历史与文化的交融。</p>
+            <div class="flex items-center text-neutral-500 text-sm mb-4">
+              <i class="fa fa-map-marker mr-1"></i>
+              <span>汉中市宁强县青木川镇</span>
+            </div>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">历史古镇</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-xs rounded-full">影视基地</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-xs rounded-full">民俗文化</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="text-accent text-xl font-bold">¥80</span>
+                <span class="text-neutral-500 text-sm">起</span>
+              </div>
+              <a href="https://baike.baidu.com/item/%E9%9D%92%E6%9C%A8%E5%B7%9D%E9%95%87?fromModule=lemma_search-box" class="inline-flex items-center px-4 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors">
+                查看详情
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 景点卡片3 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover-scale">
+          <div class="relative h-56 overflow-hidden">
+            <img src="images/index/华阳古镇.jpg" alt="华阳景区" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+            <div class="absolute top-4 left-4 bg-primary text-white text-sm font-medium px-3 py-1 rounded-full">
+              自然风光
+            </div>
+            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-accent text-sm font-medium px-3 py-1 rounded-full flex items-center">
+              <i class="fa fa-star mr-1"></i> 4.9
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-neutral-700 mb-2">华阳景区</h3>
+            <p class="text-neutral-600 mb-4">集自然山水与珍稀动植物于一体，大熊猫、金丝猴的家园，避暑胜地。</p>
+            <div class="flex items-center text-neutral-500 text-sm mb-4">
+              <i class="fa fa-map-marker mr-1"></i>
+              <span class="text-neutral-600">汉中市洋县华阳镇</span>
+            </div>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">自然保护区</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-xs rounded-full">野生动物</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-xs rounded-full">避暑胜地</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="text-accent text-xl font-bold">¥120</span>
+                <span class="text-neutral-500 text-sm">起</span>
+              </div>
+              <a href="https://baike.baidu.com/item/%E5%8D%8E%E9%98%B3%E5%8F%A4%E9%95%87?fromModule=lemma_search-box" class="inline-flex items-center px-4 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors">
+                查看详情
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 景点卡片4 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover-scale">
+          <div class="relative h-56 overflow-hidden">
+            <img src="images/scenic_spots/武侯祠.jpg" alt="武侯祠" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+            <div class="absolute top-4 left-4 bg-secondary text-white text-sm font-medium px-3 py-1 rounded-full">
+              人文古迹
+            </div>
+            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-accent text-sm font-medium px-3 py-1 rounded-full flex items-center">
+              <i class="fa fa-star mr-1"></i> 4.6
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-neutral-700 mb-2">武侯祠</h3>
+            <p class="text-neutral-600 mb-4">全国最早的武侯祠，有"天下第一武侯祠"之称，是纪念诸葛亮的重要场所。</p>
+            <div class="flex items-center text-neutral-500 text-sm mb-4">
+              <i class="fa fa-map-marker mr-1"></i>
+              <span>汉中市勉县武侯镇</span>
+            </div>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">历史古迹</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-xs rounded-full">文化遗产</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-xs rounded-full">祭祀场所</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="text-accent text-xl font-bold">¥70</span>
+                <span class="text-neutral-500 text-sm">起</span>
+              </div>
+              <a href="https://baike.baidu.com/item/%E5%8B%89%E5%8E%BF%E6%AD%A6%E4%BE%AF%E7%A5%A0?fromtitle=%E6%B1%89%E4%B8%AD%E6%AD%A6%E4%BE%AF%E7%A5%A0&fromid=9924847&fromModule=lemma_search-box" 
+              class="inline-flex items-center px-4 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors">
+                查看详情
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 景点卡片5 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover-scale">
+          <div class="relative h-56 overflow-hidden">
+            <img src="images/scenic_spots/黎平森林公园.jpg" alt="黎坪国家森林公园" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+            <div class="absolute top-4 left-4 bg-primary text-white text-sm font-medium px-3 py-1 rounded-full">
+              自然风光
+            </div>
+            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-accent text-sm font-medium px-3 py-1 rounded-full flex items-center">
+              <i class="fa fa-star mr-1"></i> 4.8
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-neutral-700 mb-2">黎坪国家森林公园</h3>
+            <p class="text-neutral-600 mb-4">以原始森林、峰林、峡谷、溪流为主要景观，四季景色各异，被誉为"陕西九寨沟"。</p>
+            <div class="flex items-center text-neutral-500 text-sm mb-4">
+              <i class="fa fa-map-marker mr-1"></i>
+              <span>汉中市南郑区黎坪镇</span>
+            </div>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">森林公园</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-xs rounded-full">徒步</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-xs rounded-full">摄影</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="text-accent text-xl font-bold">¥95</span>
+                <span class="text-neutral-500 text-sm">起</span>
+              </div>
+              <a href="https://baike.baidu.com/item/%E9%99%95%E8%A5%BF%E9%BB%8E%E5%9D%AA%E5%9B%BD%E5%AE%B6%E6%A3%AE%E6%9E%97%E5%85%AC%E5%9B%AD?fromModule=lemma_search-box" class="inline-flex items-center px-4 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors">
+                查看详情
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 景点卡片6 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover-scale">
+          <div class="relative h-56 overflow-hidden">
+            <img src="images/index/古汉台.jpg" alt="古汉台" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+            <div class="absolute top-4 left-4 bg-secondary text-white text-sm font-medium px-3 py-1 rounded-full">
+              人文古迹
+            </div>
+            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-accent text-sm font-medium px-3 py-1 rounded-full flex items-center">
+              <i class="fa fa-star mr-1"></i> 4.5
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-neutral-700 mb-2">古汉台</h3>
+            <p class="text-neutral-600 mb-4">刘邦在汉中称王时的宫殿遗址，现为汉中博物馆所在地，珍藏有众多汉代文物。</p>
+            <div class="flex items-center text-neutral-500 text-sm mb-4">
+              <i class="fa fa-map-marker mr-1"></i>
+              <span>汉中市汉台区东大街26号</span>
+            </div>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">历史遗址</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-xs rounded-full">博物馆</span>
+              <span class="px-3 py-1 bg-neutral-200 text-neutral-600 text-xs rounded-full">汉文化</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="text-accent text-xl font-bold">¥30</span>
+                <span class="text-neutral-500 text-sm">起</span>
+              </div>
+              <a href="https://baike.baidu.com/item/%E5%8F%A4%E6%B1%89%E5%8F%B0/2049813" class="inline-flex items-center px-4 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors">
+                查看详情
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 分页 -->
+      <div class="mt-12 flex justify-center">
+        <nav class="inline-flex rounded-md shadow-sm" aria-label="Pagination">
+          <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-neutral-300 bg-white text-sm font-medium text-neutral-500 hover:bg-neutral-50">
+            <span class="sr-only">上一页</span>
+            <i class="fa fa-chevron-left"></i>
+          </a>
+          <a href="#" aria-current="page" class="relative inline-flex items-center px-4 py-2 border border-primary bg-primary text-sm font-medium text-white">
+            1
+          </a>
+          <a href="#" class="relative inline-flex items-center px-4 py-2 border border-neutral-300 bg-white text-sm font-medium text-neutral-700 hover:bg-neutral-50">
+            2
+          </a>
+          <a href="#" class="relative inline-flex items-center px-4 py-2 border border-neutral-300 bg-white text-sm font-medium text-neutral-700 hover:bg-neutral-50">
+            3
+          </a>
+          <span class="relative inline-flex items-center px-4 py-2 border border-neutral-300 bg-white text-sm font-medium text-neutral-700">
+            ...
+          </span>
+          <a href="#" class="relative inline-flex items-center px-4 py-2 border border-neutral-300 bg-white text-sm font-medium text-neutral-700 hover:bg-neutral-50">
+            8
+          </a>
+          <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-neutral-300 bg-white text-sm font-medium text-neutral-500 hover:bg-neutral-50">
+            <span class="sr-only">下一页</span>
+            <i class="fa fa-chevron-right"></i>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- 推荐旅游线路 -->
+  <section class="py-16 bg-neutral-100">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-[clamp(1.5rem,2.5vw,2rem)] font-bold text-neutral-700 mb-4">推荐旅游线路</h2>
+        <p class="text-neutral-500 max-w-2xl mx-auto">精选包含多个景点的旅游线路，让您的旅程更加丰富多彩</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 线路卡片1 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover-scale">
+          <div class="h-40 overflow-hidden">
+            <img src="images/index/汉中经典三日游.jpg" alt="汉中经典三日游" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-3">
+              <h3 class="text-xl font-bold text-neutral-700">汉中经典三日游</h3>
+              <span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium">热门</span>
+            </div>
+            <div class="flex items-center text-neutral-500 mb-4">
+              <i class="fa fa-clock-o mr-2"></i>
+              <span>3天2晚</span>
+              <span class="mx-3">|</span>
+              <i class="fa fa-map-marker mr-2"></i>
+              <span>3个景点</span>
+            </div>
+            <div class="bg-neutral-50 p-4 rounded-lg mb-4">
+              <h4 class="font-medium text-neutral-700 mb-2">行程安排</h4>
+              <ul class="space-y-1 text-neutral-600 text-sm">
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>Day1: 古汉台 → 拜将坛 → 石门栈道</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>Day2: 武侯祠 → 武侯墓 → 定军山</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>Day3: 青木川古镇</span>
+                </li>
+              </ul>
+            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="text-accent text-xl font-bold">¥1200</span>
+                <span class="text-neutral-500 text-sm">起</span>
+              </div>
+              <a href="travel_routes.html" class="inline-flex items-center px-4 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors">
+                查看详情
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 线路卡片2 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover-scale">
+          <div class="h-40 overflow-hidden">
+            <img src="images/index/汉中四季.jpg" alt="汉中自然生态四日游" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-3">
+              <h3 class="text-xl font-bold text-neutral-700">汉中自然生态四日游</h3>
+              <span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium">热门</span>
+            </div>
+            <div class="flex items-center text-neutral-500 mb-4">
+              <i class="fa fa-clock-o mr-2"></i>
+              <span>3天2晚</span>
+              <span class="mx-3">|</span>
+              <i class="fa fa-map-marker mr-2"></i>
+              <span>3个景点</span>
+            </div>
+            <div class="bg-neutral-50 p-4 rounded-lg mb-4">
+              <h4 class="font-medium text-neutral-700 mb-2">行程安排</h4>
+              <ul class="space-y-1 text-neutral-600 text-sm">
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>Day1: 古汉台 → 拜将坛 → 石门栈道</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>Day2: 武侯祠 → 武侯墓 → 定军山</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>Day3: 青木川古镇</span>
+                </li>
+              </ul>
+            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="text-accent text-xl font-bold">¥1200</span>
+                <span class="text-neutral-500 text-sm">起</span>
+              </div>
+              <a href="travel_routes.html" class="inline-flex items-center px-4 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors">
+                查看详情
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover-scale">
+          <div class="h-40 overflow-hidden">
+            <img src="images/food/汉中面皮.jpg" alt="汉中美食文化一日游" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-3">
+              <h3 class="text-xl font-bold text-neutral-700">汉中美食文化一日游</h3>
+              <span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium">热门</span>
+            </div>
+            <div class="flex items-center text-neutral-500 mb-4">
+              <i class="fa fa-clock-o mr-2"></i>
+              <span>3天2晚</span>
+              <span class="mx-3">|</span>
+              <i class="fa fa-map-marker mr-2"></i>
+              <span>3个景点</span>
+            </div>
+            <div class="bg-neutral-50 p-4 rounded-lg mb-4">
+              <h4 class="font-medium text-neutral-700 mb-2">行程安排</h4>
+              <ul class="space-y-1 text-neutral-600 text-sm">
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>Day1: 古汉台 → 拜将坛 → 石门栈道</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>Day2: 武侯祠 → 武侯墓 → 定军山</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>Day3: 青木川古镇</span>
+                </li>
+              </ul>
+            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="text-accent text-xl font-bold">¥1200</span>
+                <span class="text-neutral-500 text-sm">起</span>
+              </div>
+              <a href="travel_routes.html" class="inline-flex items-center px-4 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors">
+                查看详情
+              </a>
+            </div>
+          </div>
+        </div>
+              
